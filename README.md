@@ -30,6 +30,21 @@ Using historical price data of wines develop a predictive model for prices and h
 - Functioning application that is able to take as input even wines not in the dataset.<br>
 
 ## Cleaned and Combined Dataset Data Dictionary:<br>
+| Column Name | Data Type | File | Description |
+|---|---|---|---|
+| name | | cleaned_combined.csv |
+| country | object | cleaned_combined.csv | Origin country of wine, USA as 'U.S.', UK countries seperate e.g. 'England' |
+| region | object | cleaned_combined.csv | Region in which the wine was produced, for the U.S. this is states |
+| vintage | object | cleaned_combined.csv | Year the grapes were picked otherwise known as vintage |
+| producer | | cleaned_combined.csv |
+| rating | | cleaned_combined.csv |
+| rating_qty | | cleaned_combined.csv |
+| price | float |cleaned_combined.csv | Price in GBP for 750ml single bottle of wine |
+| grape_variety | object | cleaned_combined.csv | 
+| wine_variety | object | cleaned_combined.csv | Categorical variable representing wine type (red, white, sparkling, rose, unknown) |
+| abv | float | cleaned_combined.csv | 
+| 
+
 
 
 ## Process
