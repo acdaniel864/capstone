@@ -32,8 +32,8 @@ Using historical price data of wines develop a predictive model for prices and h
 ## Cleaned and Combined Dataset Data Dictionary:<br>
 | Column Name | Data Type | File | Description |
 |---|---|---|---|
-| name | | cleaned_combined.csv |
-| country | object | cleaned_combined.csv | Origin country of wine, USA as 'U.S.', UK countries seperate e.g. 'England' |
+| name | object | cleaned_combined.csv | The name of the wine, often formulated <winery><grape><vintage> |
+| country | object | cleaned_combined.csv | Origin country of wine, USA as 'United States', UK countries seperate e.g. 'England' |
 | region | object | cleaned_combined.csv | Region in which the wine was produced, for the U.S. this is states |
 | vintage | object | cleaned_combined.csv | Year the grapes were picked otherwise known as vintage |
 | producer | object | cleaned_combined.csv | A two word code for producer names | 
@@ -43,7 +43,7 @@ Using historical price data of wines develop a predictive model for prices and h
 | grape_variety | object | cleaned_combined.csv | 
 | wine_variety | object | cleaned_combined.csv | Categorical variable representing wine type (red, white, sparkling, rose, unknown) |
 | abv | float | cleaned_combined.csv | 
-| 
+| reviewed_by | object | cleaned_combined.csv | Initials representing certain renowned reviewers for full reviewer names [follow this link](https://www.wine.com/content/landing/icons-explained#:~:text=Professional%20Ratings,range%20within%20the%20tasting%20note) |
 
 
 
@@ -64,7 +64,7 @@ ABV: Alcohol by volume (ABV) content<br>
 Rates: Simply lists the top wine experts who have reviewed the wine<br>
 
 **[Vivino 1 dataset](https://www.kaggle.com/datasets/budnyak/wine-rating-and-price)**:<br>
-**Scrapped:** 02/11/2023<br>
+**Scrapped:** 22/02/2020<br>
 Name: Name of wine and year<br>
 Price: price of bottle in EUR €<br>
 
