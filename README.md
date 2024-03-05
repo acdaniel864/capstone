@@ -48,6 +48,7 @@ Using historical price data of wines develop a predictive model for prices and h
 | wine_variety | object | cleaned_combined.csv | Categorical variable representing wine type (red, white, sparkling, rose, unknown) |
 | abv | float | cleaned_combined.csv | 
 | reviewed_by | object | cleaned_combined.csv | Initials representing certain renowned reviewers for full reviewer names [follow this link](https://www.wine.com/content/landing/icons-explained#:~:text=Professional%20Ratings,range%20within%20the%20tasting%20note) |
+| from_vivino | boolean | cleaned_combined.csv | True is data originates from vivino false if data from wine.com |
 
 
 
@@ -75,6 +76,7 @@ Price: price of bottle in EUR €<br>
 
 **[Vivino 2 dataset](https://www.kaggle.com/datasets/joshuakalobbowles/vivino-wine-data)**:<br>
 **Scrapped:** 01/02/2022<br>
+Price: price of bottle in EUR €
 
 **[Validation Dataset - Unknown Source Wines Without Review](https://www.kaggle.com/datasets/elvinrustam/wine-dataset)**
 **Date uploaded:** 01/01/2024<br>
@@ -175,3 +177,8 @@ Purpose: Allow wine consumers to better understand their choices of wine, compar
 
 ## Future Analysis Ideas: 
         * Review Text Analysis: Apply natural language processing (NLP) to analyze review texts for mentions of price or value. Determine if reviews often justify ratings with price (e.g., "great for the price") versus focusing solely on taste or experience. Or how frequently 'price' is mentioned in wine ratings across different platforms. A higher frequency of price mentions in positive (or negative) ratings could indicate a price-contextual evaluation.
+
+
+## Things to revisit: 
+1. Group the producers more. 
+2. More methods to extract or find grape varietry for viv_1
