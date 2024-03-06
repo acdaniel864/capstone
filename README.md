@@ -1,10 +1,6 @@
-# README - Why, Why, Wine
-**Price Predictive Modelling of Consumer Wines an Application for Wine Comparison**<br>
+# README - Why This Wine
+**Price Predictive Modelling of Consumer Wines - an Application for Wine Comparison**<br>
 Capstone Project by Aaran Daniel<br>
-
-How important is region, vintage and rating to the price of a wine? 
-
-
 
 ## Intro:<br>
 This project puts a fresh twist on a topic that is the interest of many a thirsty Data Scientist, wine. Over 50,000 wines are analysed in a project designed to shed light on what dictates the prices of consumer wine and help drinkers identify some delicious bargains. By combining datasets from two different websites, three seperate scrapes, it is hoped that deficiencies in any single datasource are mitigated, allowing for the creation of a price predictive model more robust to unseen data.<br> 
@@ -23,6 +19,7 @@ Using historical price data of wines develop a predictive model for prices and h
 ## Secondary Aims:<br>
 - Investigate the relationship between price and rating. Do consumers take into account the price before rating a wine or are all ratings equal?<br>
 - Identify key price predictive features.<br>
+- How important is region, vintage, producer and rating to the price of a wine? 
 - Investigate if a renowned reviewer having reviewed a wine is predictive for prices.<br>
 - Find undervalued wines which match features of higher value wines but at a discount price tag.<br>
 - Identify region/vintages that are highly rated compared to others. <br>
