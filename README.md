@@ -175,10 +175,11 @@ Purpose: Allow wine consumers to better understand their choices of wine, compar
 2. Recommend similar wines to try. <br>
 3. Say if the wine they are researching is overpriced, underpriced or just right. <br>
 
-## Future Analysis Ideas: 
+## Future Analysis Ideas - Further Investigation: 
         * Review Text Analysis: Apply natural language processing (NLP) to analyze review texts for mentions of price or value. Determine if reviews often justify ratings with price (e.g., "great for the price") versus focusing solely on taste or experience. Or how frequently 'price' is mentioned in wine ratings across different platforms. A higher frequency of price mentions in positive (or negative) ratings could indicate a price-contextual evaluation.
-
+        * Prices of wines for various reasons differ between countries, those scrapes done in EUR will be price differently to those done in GBP or USD. Taxes are different, import taxes are different and websites might deal with price conversions differently. 
 
 ## Things to revisit: 
 1. Group the producers more. 
-2. More methods to extract or find grape varietry for viv_1
+2. More methods to extract or find grape varietry for viv_1.
+3. Do exact same eda and modelling for higher price wines. What is the difference? It is generally said minimum for IG wines is $100. ("run an experiment to see how the model fairs with them included for train and then with them excluded but predicted on...Even if you did that, do you have a way of determining if a wine falls into the super expensive category before you pass it into the model?")
