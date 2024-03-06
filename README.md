@@ -1,4 +1,4 @@
-# README - Why This Wine
+# README - What, Where and Wine 
 **Price Predictive Modelling of Consumer Wines - an Application for Wine Comparison**<br>
 Capstone Project by Aaran Daniel<br>
 
