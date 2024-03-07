@@ -78,3 +78,4 @@ def regression_model_selector(X_train, y_train, X_test, y_test, ss=False, quick=
         results = pd.DataFrame(results, columns = ['model', 'rmse', 'cv', 'train_score', 'test_score'])
         results['varience'] = results['train_score'] - results['test_score']
         return results
+    
