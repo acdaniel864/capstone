@@ -10,7 +10,7 @@ When identifying undervalued wines this project delves deeper than a basic compa
 The end result will be a high-acccuracy price predictive model and an application designed for users to input wines and receive similar wines, vintage comparisons and some measure of value-for-money. Helping the user decide if the wine they are interested in is overvalued, undervalued or just-right. Some revealing price predictive features and interesting insights sprinkled in along the way.<br> 
 
 ## Problem Statement:<br>
-- Too many wines out on the market how can a user know if they are getting good value for money or how the wine in their hand compares to previous vintages or wines from the same region?<br>
+- Too many wines out on the market how can a user know if they are getting good value for money? How the wine in their hand compares to previous vintages or wines from the same region.<br>
 - We look to understand what features are most predictive of wine prices and in doing so identify oppotiunities to purchase great wines at bargain prices.<br>
 
 ## Primary Aim:<br>
