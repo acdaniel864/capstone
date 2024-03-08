@@ -1,8 +1,33 @@
 model,rmse,cv,train_score,test_score,varience,date/desc
-lr,0.7055844842893534,0.5041362890147072,0.5089539623362307,0.5155523712327925,-0.006598408896561825,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
-ridge,0.7053278128531388,0.5040903626903328,0.5086293606583399,0.5159047634835991,-0.007275402825259292,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
-knn,0.5700984825944362,0.6295588412861333,0.7999531160298314,0.6837368732246105,0.11621624280522092,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
-dt,0.43235059251210806,0.801611508231009,0.9418696517625239,0.818104938849639,0.12376471291288493,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
-rf,0.3843452853938049,0.8380510048360067,0.9322261156020899,0.8562552782764372,0.07597083732565268,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
-adab,0.7351857333395025,0.45626950279226036,0.46457171368122585,0.4740518501650032,-0.009480136483777324,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
-svr,0.9891009874777674,0.0392757515946115,0.041933502112525,0.04801509725070019,-0.006081595138175189,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+lr,0.7055844842893534,0.5041362890147072,0.5089539623362307,0.5155523712327925,-0.0065984088965618,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+ridge,0.7053278128531388,0.5040903626903328,0.5086293606583399,0.5159047634835991,-0.0072754028252592,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+knn,0.5700984825944362,0.6295588412861333,0.7999531160298314,0.6837368732246105,0.1162162428052209,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+dt,0.432350592512108,0.801611508231009,0.941869651762524,0.818104938849639,0.1237647129128849,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+rf,0.3843452853938049,0.8380510048360067,0.93222611560209,0.8562552782764372,0.0759708373256526,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+adab,0.7351857333395025,0.4562695027922603,0.4645717136812258,0.4740518501650032,-0.0094801364837773,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+svr,0.9891009874777674,0.0392757515946115,0.041933502112525,0.0480150972507001,-0.0060815951381751,"6/3 Target: Log Price | Features: rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+lr,0.6989547292633784,0.5100472014898905,0.514609287965622,0.509480647619366,0.005128640346256,"7/3 Target: Log Price | Features: age, rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+ridge,0.69882948040084,0.5104374072240884,0.5144184349231226,0.5096564286357338,0.0047620062873887,"7/3 Target: Log Price | Features: age, rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+knn,0.5564771804964607,0.6539102417618204,0.8113066948383036,0.6890770565229405,0.1222296383153631,"7/3 Target: Log Price | Features: age, rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+dt,0.4141366816216117,0.8158064027492966,0.9461642428811718,0.8277951220688232,0.1183691208123486,"7/3 Target: Log Price | Features: age, rating, rating_qty, abv, country, vintage, wine_v, grape_v, from_vivino"
+lr,0.7576516777862474,0.4279599887802728,0.429567335048283,0.423635492288131,0.005931842760152,7/3 Target: Log Price | Features: all features label encoded | ABV imputed with it. imp. RF  
+ridge,0.75765189595985,0.4279646189963723,0.4295673216852437,0.4236351603478929,0.0059321613373507,7/3 Target: Log Price | Features: all features label encoded | ABV imputed with it. imp. RF  
+knn,0.6135766214951893,0.5568340005744767,0.8054194470822151,0.6219966417330975,0.1834228053491176,7/3 Target: Log Price | Features: all features label encoded | ABV imputed with it. imp. RF  
+dt,0.434658917275338,0.7921188273202941,0.99928031778247,0.8103052819288683,0.1889750358536016,7/3 Target: Log Price | Features: all features label encoded | ABV imputed with it. imp. RF  
+rf,0.3232441542132241,0.8879558389616428,0.9858525468036864,0.895089390601283,0.0907631562024033,7/3 Target: Log Price | Features: all features label encoded | ABV imputed with it. imp. RF  
+adab,0.7644012124139151,0.5089232336240188,0.427803797845198,0.4133206729788728,0.0144831248663251,7/3 Target: Log Price | Features: all features label encoded | ABV imputed with it. imp. RF  
+svr,0.9528681159135036,0.076827885952095,0.0849865563717768,0.0883594361240847,-0.0033728797523078,7/3 Target: Log Price | Features: all features label encoded | ABV imputed with it. imp. RF  
+lr,0.7374959740026704,0.4634699396958551,0.4650656520019867,0.4538934840953799,0.0111721679066068,7/3 | ABV imputed LR | Target: Log Price | Features: all features label encoded | ABV imputed LR  
+ridge,0.7374954305255971,0.4634743621309166,0.4650656380307766,0.4538942889709917,0.0111713490597848,7/3 | ABV imputed LR | Target: Log Price | Features: all features label encoded | ABV imputed LR  
+knn,0.6136362882871921,0.556810151551766,0.8054257865386008,0.6219231208602377,0.183502665678363,7/3 | ABV imputed LR | Target: Log Price | Features: all features label encoded | ABV imputed LR  
+dt,0.397220438233111,0.8148909314443484,0.9993035459691064,0.841575909295926,0.1577276366731805,7/3 | ABV imputed LR | Target: Log Price | Features: all features label encoded | ABV imputed LR  
+rf,0.3020977281242398,0.8976535009097637,0.9871848405535386,0.9083667755247408,0.0788180650287977,7/3 | ABV imputed LR | Target: Log Price | Features: all features label encoded | ABV imputed LR  
+adab,0.7060083034428828,0.4870366987245054,0.5089941649345097,0.4995304390101033,0.0094637259244063,7/3 | ABV imputed LR | Target: Log Price | Features: all features label encoded | ABV imputed LR  
+svr,0.953003679576804,0.076574660475629,0.0847095328881949,0.0881000211566329,-0.003390488268438,7/3 | ABV imputed LR | Target: Log Price | Features: all features label encoded | ABV imputed LR  
+lr,129.26616813210512,0.13479454800781748,0.12862138754915964,0.11785594022213208,0.010765447327027555,7/3 | ABV imputed LR | Target: PRICE | Features: all features label encoded
+ridge,129.26624638319103,0.1347955954421902,0.12862138543694102,0.11785487221257474,0.010766513224366281,7/3 | ABV imputed LR | Target: PRICE | Features: all features label encoded
+knn,128.71316099239684,0.3552525877833471,0.6589285537169205,0.12538750838973478,0.5335410453271857,7/3 | ABV imputed LR | Target: PRICE | Features: all features label encoded
+dt,151.61158563011412,0.04842234380137633,0.9943807859373441,-0.21348536636115445,1.2078661522984986,7/3 | ABV imputed LR | Target: PRICE | Features: all features label encoded
+rf,113.85187428047114,0.4824112838436325,0.930563961316873,0.3156943387732035,0.6148696225436695,7/3 | ABV imputed LR | Target: PRICE | Features: all features label encoded
+adab,362.5872560295803,-2.9643655619762805,-5.291441397562623,-5.9405651506348836,0.6491237530722609,7/3 | ABV imputed LR | Target: PRICE | Features: all features label encoded
+svr,139.4779721539925,-0.0306345623682275,-0.028909830029456796,-0.027024994406509517,-0.0018848356229472785,7/3 | ABV imputed LR | Target: PRICE | Features: all features label encoded

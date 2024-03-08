@@ -1,6 +1,6 @@
 
 # code taken from Matt Brems 
-def compare_histograms(imputed_column, original_column, x_label, y_label = 'Frequency'):
+def compare_histograms(imputed_column, original_column, x_label, y_label = 'Frequency', bins = 30):
     import matplotlib.pyplot as plt
     import numpy as np
     import statistics
@@ -25,12 +25,12 @@ def compare_histograms(imputed_column, original_column, x_label, y_label = 'Freq
     rnge = max(original_column) - min(original_column)
     xmin = min(original_column) - 0.02 * rnge
     xmax = max(original_column) + 0.02 * rnge
-    ymax = 40
+    #ymax = 100
 
     ax0.set_xlim(xmin, xmax)
-    ax0.set_ylim(0, ymax)
+
     ax1.set_xlim(xmin, xmax)
-    ax1.set_ylim(0, ymax)
+
 
     # Set top labels.
     ax0.set_title('Real Histogram', position = (0,1), ha = 'left', fontsize = 25)
@@ -40,7 +40,7 @@ def compare_histograms(imputed_column, original_column, x_label, y_label = 'Freq
     ax0.set_yticks([])
 
     # Generate top histogram.
-    ax0.hist(original_column, bins = 15, color = '#185fad', alpha = 0.75, label = '')
+    ax0.hist(original_column, bins = bins, color = '#185fad', alpha = 0.75, label = '')
     ax0.axvline(np.mean(original_column), color = '#185fad', lw = 5, label = 'True Mean')
     ax0.legend(prop={'size': 15}, loc = 1)
 
@@ -52,7 +52,7 @@ def compare_histograms(imputed_column, original_column, x_label, y_label = 'Freq
     ax1.set_yticks([])
     
     # Generate bottom histogram.
-    ax1.hist(imputed_column, bins = 15, color = 'orange', alpha = 0.75, label = '', stacked = True)
+    ax1.hist(imputed_column, bins = bins, color = 'orange', alpha = 0.75, label = '', stacked = True)
     ax1.axvline(np.mean(original_column), color = '#185fad', lw = 5, label = 'True Mean')
     ax1.axvline(np.mean(imputed_column), color = 'darkorange', lw = 5, label = 'Imputed Mean')
     ax1.legend(prop={'size': 15}, loc = 1)
