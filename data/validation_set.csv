@@ -312,7 +312,7 @@ Boekenhoutskloof The Chocolate Block 202122 Swartland,Swartland,South Africa,202
 Weingut Friedrich Becker Pinot Noir 2019 Pfalz,Germany,Germany,2019,Friedrich Becker,red,Pinot Noir,16.99,,,13.5,unknown,False
 Weingut Friedrich Becker Kalkmergel Grauer Burgunder 2021 Pfalz,Germany,Germany,2021,Friedrich Becker,white,Pinot Gris,23.99,,,13.0,unknown,False
 Chateau Batailley 201617 Pauillac,Bordeaux,France,2016,Chateau Batailley,red,Cabernet Sauvignon,69.99,,,13.5,unknown,False
-Vinarija Deuric Gewurztraminer 2020 Serbia,Serbia,Serbia,2020,Vinarija Deuric Gewurz Serbia,white,Gewürztraminer,16.99,,,13.5,unknown,False
+Vinarija Deuric Gewurztraminer 2020 Serbia,Serbia,Serbia,2020,Vinarija Deuric Serbia,white,Gewürztraminer,16.99,,,13.5,unknown,False
 Domaine De Beausejour Les Silex Sauvignon Blanc 2021 Touraine,Loire,France,2021,Domaine De Beausejour Les Silex Touraine,white,Sauvignon Blanc,11.99,,,12.5,unknown,False
 Bread Butter Reserve Cabernet Sauvignon 201920 Napa Valley,California,Usa,2019,Bread Butter,red,Cabernet Sauvignon,31.99,,,14.5,unknown,False
 Bodegas Care Garnacha Blanca Nativa 2021 Carinena,Unknown,Spain,2021,Bodegas Care,white,Grenache Blanc,12.99,,,13.5,unknown,False
@@ -541,7 +541,7 @@ Castello Di Meleto San Pietro Chianti Classico Docg 202021,Tuscany,Italy,2021,Ca
 Catena Cabernet Sauvignon 201921 Mendoza,Mendoza,Argentina,2021,Catena,red,Cabernet Sauvignon,14.99,,,13.5,unknown,False
 Catena Zapata Nicasia Malbec 201920 Uco Valley,Mendoza,Argentina,2020,Catena,red,Malbec,69.99,,,14.0,unknown,False
 Cave Des Vignerons De Buxy Les Millieres Montagny Premier Cru 202122,Burgundy,France,2022,Cave Des Vignerons,white,Chardonnay,19.99,,,13.5,unknown,False
-Cave Vinicole De Hunawihr Kuhlmannplatz Cuvee Prestige Gewurztraminer 201920 Alsace,Alsace,France,2020,Cave Vinicole De Hunawihr Kuhlmannplatz Cuvee Prestige Gewurz Alsace,white,Gewürztraminer,12.99,,,14.0,unknown,False
+Cave Vinicole De Hunawihr Kuhlmannplatz Cuvee Prestige Gewurztraminer 201920 Alsace,Alsace,France,2020,Cave Vinicole De Hunawihr Kuhlmannplatz Cuvee Prestige Alsace,white,Gewürztraminer,12.99,,,14.0,unknown,False
 Cave Vinicole De Hunawihr Kuhlmannplatz Cuvee Prestige Pinot Noir 202122 Alsace,Alsace,France,2022,Cave Vinicole De Hunawihr Kuhlmannplatz Cuvee Prestige Alsace,red,Pinot Noir,13.99,,,13.5,unknown,False
 Domaine L Chatelain Chablis Premier Cru 202021,Burgundy,France,2021,Domaine L,white,Chardonnay,33.99,,,13.5,unknown,False
 M Chapoutier Les Moniers Crozes Hermitage 201921,Rhone,France,2021,M Chapoutier,red,Syrah,21.99,,,14.0,unknown,False
@@ -607,7 +607,7 @@ Guidalberto 202021 Tenuta San Guido Igt Toscana,Tuscany,Italy,2020,Tenuta San Gu
 Hambledon Classic Cuvee Hampshire,Surrey,England,unknown,Hambledon Classic,white,Chardonnay,38.99,,,12.0,unknown,False
 Harveys Bristol Cream,Unknown,Spain,unknown,Harveys Bristol,other,unknown,13.99,,,17.5,unknown,False
 Hospices De Beaujeu Bourgogne Gamay 202021,Burgundy,France,2021,Hospices De Beaujeu,red,Gamay,14.99,,,13.0,unknown,False
-Indomita Gran Reserva Pinot Noir 202122 Casblanca Valley,Aconcagua,Chile,2022,Indomita Gran Casa Valley,red,Pinot Noir,11.99,,,14.0,unknown,False
+Indomita Gran Reserva Pinot Noir 202122 Casblanca Valley,Aconcagua,Chile,2022,Indomita Gran Cas Valley,red,Pinot Noir,11.99,,,14.0,unknown,False
 J Moreau Et Fils Le Sans Bois Chardonnay 202021 France,Other France,France,2021,J Moreau Et Fils Le Sans Bois France,white,Chardonnay,11.99,,,12.0,unknown,False
 Paul Jaboulet Aine Les Cedres Organic Chateauneufdupape 201920,Rhone,France,2020,Paul Jaboulet Aine,red,Grenache,37.99,,,15.0,unknown,False
 Jaboulet Les Jumelles Coterotie 201720,Rhone,France,2020,Jaboulet Les Jumelles,red,Syrah,66.99,,,14.0,unknown,False
@@ -647,8 +647,8 @@ Domaine Prunier Les Clous Meursault 2020,Burgundy,France,2020,Domaine Prunier,wh
 Mollydooker The Boxer Shiraz 202021 Australia,South Australia,Australia,2020,Mollydooker,red,Shiraz,29.99,,,16.0,unknown,False
 Montepulciano Dabruzzo 202021 Masciarelli,Abruzzo,Italy,2021,Masciarelli,red,Montepulciano,12.99,,,13.5,unknown,False
 Montes Purple Angel Carmenere 201920 Colchagua Valley,Central Valley,Chile,2020,Montes,red,Carménère,85.0,,,15.0,unknown,False
-Morande One To One Gewurztraminer 2022 Chile,Aconcagua,Chile,2022,Morande One To One Gewurz Chile,white,Gewürztraminer,9.99,,,13.5,unknown,False
-Morande Reserva One To One Pais 201921 Casablanca Valley,Aconcagua,Chile,2021,Morande One To One Casaa Valley,red,Pais,8.99,,,14.0,unknown,False
+Morande One To One Gewurztraminer 2022 Chile,Aconcagua,Chile,2022,Morande One To One Chile,white,Gewürztraminer,9.99,,,13.5,unknown,False
+Morande Reserva One To One Pais 201921 Casablanca Valley,Aconcagua,Chile,2021,Morande One To One Casa Valley,red,Pais,8.99,,,14.0,unknown,False
 Mt Difficulty Ghost Town Pinot Noir 2020 Central Otago,Central Otago,New Zealand,2020,Ghost,red,Pinot Noir,37.99,,,14.0,unknown,False
 Mt Difficulty Roaring Meg Pinot Gris 202122 Central Otago,Central Otago,New Zealand,2022,Mt Difficulty Roaring Meg Central Otago,white,Pinot Gris,15.99,,,14.0,unknown,False
 Mud House The Woolshed Sauvignon Blanc 202021 Marlborough,Marlborough,New Zealand,2021,Mud House The Woolshed Marlborough,white,Sauvignon Blanc,17.99,,,13.0,unknown,False
@@ -715,7 +715,7 @@ Vinalba Seleccion Torrontes 202122 Lujan De Cuyo,Mendoza,Argentina,2021,Vinalba 
 Vino Nobile Di Montepuliciano 201718 Bonacchi Italy,Tuscany,Italy,2018,Vino Nobile,red,Sangiovese,16.99,,,13.0,unknown,False
 Vireclesse Vieilles Vignes 202022 Christophe Cordier,Burgundy,France,2022,Vireclesse Vieilles,white,Chardonnay,22.99,,,14.0,unknown,False
 Voerzio Martini La Serra Barolo Docg 2017,Piedmont,Italy,2017,Voerzio Martini,red,Nebbiolo,39.99,,,14.5,unknown,False
-Waimea Estates Gewurztraminer 202122 Nelson,Nelson,New Zealand,2022,Waimea Estates Gewurz Nelson,white,Gewürztraminer,14.99,,,13.5,unknown,False
+Waimea Estates Gewurztraminer 202122 Nelson,Nelson,New Zealand,2022,Waimea Estates Nelson,white,Gewürztraminer,14.99,,,13.5,unknown,False
 Waimea Estates Gruner Veltliner 202122 Nelson,Nelson,New Zealand,2022,Waimea Estates Nelson,white,Gruner Veltliner,12.99,,,13.0,unknown,False
 Weingut Brundlmayer Langenloiser Alte Reben Organic Gruner Veltliner 202122 Langenlois,Austria,Austria,2021,Weingut Brundlmayer,white,Gruner Veltliner,39.99,,,14.5,unknown,False
 Winemaker Series The Red 201920 Swartland,Swartland,South Africa,2020,Winemaker Series The Swartland,red,Syrah,11.99,,,14.5,unknown,False
@@ -725,7 +725,7 @@ Wynns Coonawarra Estate Black Label Cabernet Sauvignon 20171819 Coonawarra,South
 Yalumba Cigar Cabernet Sauvignon 201718 Coonawarra,South Australia,Australia,2018,Yalumba,red,Cabernet Sauvignon,28.99,,,14.5,unknown,False
 Yalumba The Signature Cabernet Sauvignonshiraz 201819 Barossa,South Australia,Australia,2018,Yalumba,red,Cabernet Sauvignon,41.99,,,14.5,unknown,False
 Zuccardi Q Malbec 202021 Mendoza,Mendoza,Argentina,2021,Zuccardi Q Menda,red,Malbec,16.99,,,14.5,unknown,False
-Indomita Duette Pinot Noir 202122 Casablanca Valley,Aconcagua,Chile,2021,Indomita Duette Casaa Valley,red,Pinot Noir,14.99,,,14.0,unknown,False
+Indomita Duette Pinot Noir 202122 Casablanca Valley,Aconcagua,Chile,2021,Indomita Duette Casa Valley,red,Pinot Noir,14.99,,,14.0,unknown,False
 Definition Sauternes 201316,Bordeaux,France,2016,Definition,white,Sémillon,23.99,,,13.0,unknown,False
 Waimea Estates Sauvignon Gris 202122 Nelson,Nelson,New Zealand,2022,Waimea Estates Nelson,white,Sauvignon Gris,12.99,,,14.0,unknown,False
 Casa Ferreirinha Planalto White Reserva 202122 Douro,Douro,Portugal,2022,Casa Ferreirinha,white,Malvasia,9.99,,,13.0,unknown,False

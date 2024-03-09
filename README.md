@@ -180,3 +180,4 @@ Purpose: Allow wine consumers to better understand their choices of wine, compar
 1. Group the producers more. 
 2. More methods to extract or find grape varietry for viv_1.
 3. Do exact same eda and modelling for higher price wines. What is the difference? It is generally said minimum for IG wines is $100. ("run an experiment to see how the model fairs with them included for train and then with them excluded but predicted on...Even if you did that, do you have a way of determining if a wine falls into the super expensive category before you pass it into the model?")
+4. Predict ratings using price and other features. Try predicting ratings without price using RNNs. 
