@@ -3,9 +3,9 @@
 Capstone Project by Aaran Daniel<br>
 
 ## Intro:<br>
-This project puts a fresh twist on a topic that is the interest of many a thirsty Data Scientist, wine. Over 50,000 wines are analysed in a project designed to shed light on what dictates the prices of consumer wine and help drinkers identify some delicious bargains. By combining datasets from two different websites, three seperate scrapes, it is hoped that deficiencies in any single datasource are mitigated, allowing for the creation of a price predictive model more robust to unseen data.<br> 
+This project puts a fresh twist on a topic that is the interest of many a thirsty Data Scientist, wine. Over 50,000 wines are analysed in a project designed to shed light on what dictates the prices of consumer wine and help drinkers identify some delicious bargains. Combining datasets from two different websites, three seperate scrapes, it is hoped that deficiencies in any single datasource are mitigated, allowing for the creation of a price predictive model more robust to unseen data.<br> 
 
-When identifying undervalued wines this project delves deeper than a basic comparison of rating and price (i.e. those wines with a higher than average rating and a lower than average price are designated undervalued). The question is asked, do consumers rate wines price contextually ("good for its price") or based on inherent quality/experience of the wine ("good or bad regardless of price")<br> 
+When identifying undervalued wines this project delves deeper than a basic comparison of rating and price. <br> 
 
 The end result will be a high-acccuracy price predictive model and an application designed for users to input wines and receive similar wines, vintage comparisons and some measure of value-for-money. Helping the user decide if the wine they are interested in is overvalued, undervalued or just-right. Some revealing price predictive features and interesting insights sprinkled in along the way.<br> 
 
