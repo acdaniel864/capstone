@@ -37,7 +37,7 @@ import time
 
 # BASIC START UP STUFF 
 if "answer" not in st.session_state:
-    st.session["answer"] = "not done"
+    st.session_state["answer"] = "not done"
 
 # Import dataset and model 
 df_backend = pd.read_csv('../data/app_backend.csv')
@@ -53,54 +53,60 @@ random_row_b = df_backend.loc[random_index]
 random_row_f = df_frontend.loc[random_index]
 X_with_price = random_row_b.to_frame().transpose()
 X = X_with_price.drop(['log_price'], axis = 1)
-real_price = round(np.exp(X_with_price['log_price']), 2)
-casi_answer =  model.predict(X)
+real_price = float(round(np.exp(X_with_price['log_price']), 2))
+casi_answer =  float(round(np.exp(model.predict(X)[0]),2))
+
+# Update session_state with the prediction and real price
+st.session_state['casi_answer'] = casi_answer
+st.session_state['real_price'] = real_price
 
 # DESIGN STUFF
-casi_width = 150
+casi_width = 170
 st.title("Can you beat Casi our in-house sommelier?")
-# Left column for data before the image
-col1, col2, col3 = st.columns([1,1,1])  # Adjust column width ratios as needed
 
+# Setup 3 columns of equal width
+col1, col2, col3 = st.columns([1,1,1]) 
 
 # DEFINING FUNCTIONS
-def answer_function(casi_answer, real_price, player_answer):
-    if round(casi_answer,2) - real_price < player_answer - real_price:
+def answer_function():
+    player_answer = float(st.session_state.player_answer) if 'player_answer' in st.session_state and st.session_state.player_answer else 0.0
+    casi_answer = st.session_state.casi_answer
+    real_price = st.session_state.real_price
+    if (casi_answer - real_price) < (player_answer - real_price) == True:
         st.session_state["answer"] = "answer correct"
-    else: 
+    else:
         st.session_state["answer"] = "answer incorrect"
 
+player_answer = st.text_input("How would you price this wine?", key="player_answer", max_chars=6)
+
+st.button('Final Answer', on_click=answer_function)
+
 # BEFORE QUESTION IS ANSWERED
+if st.session_state["answer"] == "not done":
+    with col1:
+        st.markdown(f"Name: {random_row_f[0]}")
+        st.markdown(f"Country: {random_row_f[2]}")
+        st.markdown(f"Region: {random_row_f[1]}")
+        st.markdown(f"Vintage: {random_row_f[3]}")
+        st.markdown(f"Variety: {random_row_f[5]}")
+        st.markdown(f"Grape: {random_row_f[5]}")
+        st.markdown(f"ABV: {random_row_f[9]}")
+        st.markdown(f"Producer: {random_row_f[4]}")
 
-with col1:
-    st.markdown(f"Name: {random_row_f[0]}")
-    st.markdown(f"Country: {random_row_f[2]}")
-    st.markdown(f"Region: {random_row_f[1]}")
-    st.markdown(f"Vintage: {random_row_f[3]}")
-    st.markdown(f"Variety: {random_row_f[5]}")
-    st.markdown(f"Grape: {random_row_f[5]}")
-    st.markdown(f"ABV: {random_row_f[9]}")
-    st.markdown(f"Producer: {random_row_f[4]}")
-    
+    with col2:
+        st.image('../images/casi_medium.png', width=casi_width)
 
-with col2:
-    st.image('../images/casi_medium.png', width=casi_width)
+    with col3:
+        st.header('Play with your own wine?')
+        st.markdown(f"Upload or snap a photo of your bottle and see what casi thinks.")
+        #uploaded_photo = col3.file_uploader("Upload a photo.")
+        #camera_photo = col3.camera_input("Take a photo!")
 
-with col3:
-    st.header('Play with your own wine?')
-    st.markdown(f"Upload or snap a photo of your bottle and see what casi thinks.")
-    #uploaded_photo = col3.file_uploarder("Upload a photo.")
-    #camera_photo = col3.camera_input("Take a photo!")
+    # player_answer_slider = st.select_slider("How would you price this wine?", options = [f'£{10}', f'£{20}', f'£{30}'])
 
-
-player_answer = st.text_input("How would you price this wine?", max_chars = 20)
-
-st.button('Final Answer', on_click=answer_function(X, real_price, player_answer))
-
-# player_answer_slider = st.select_slider("How would you price this wine?", options = [f'£{10}', f'£{20}', f'£{30}'])
 
 # WHEN QUESTION ANSWERED CORRECTLY
-if st.sesstion_state == "answer correct":
+if st.session_state["answer"] == "answer correct":
     with col1:
         st.markdown(f"# Price: £{real_price}")
         st.markdown(f"Name: {random_row_f[0]}")
@@ -125,7 +131,7 @@ if st.sesstion_state == "answer correct":
         # API: info about the wine in question and a photo
 
 # WHEN QUESTION ANSWERED INCORRECTLY
-if st.sesstion_state == "answer incorrect":
+if st.session_state["answer"] == "answer incorrect":
     with col1:
         st.markdown(f"# Price: £{real_price}") # API: make these messages gpt generated 
         st.markdown(f"Name: {random_row_f[0]}")
@@ -146,7 +152,7 @@ if st.sesstion_state == "answer incorrect":
         st.markdown(f"The real price was £{real_price}.")
         st.markdown(f"Casi guessed £{casi_answer}.")
         st.markdown(f"You guessed £{player_answer}.")
-        col3.metric(label="How close were you?", value=(real_price - casi_answer), delta=(real_price-player_answer))
+        col3.metric(label="How close were you?", value=(real_price - casi_answer), delta=(float(real_price-player_answer)))
         # API: info about the wine in question and a photo
     
 
@@ -155,13 +161,13 @@ if st.sesstion_state == "answer incorrect":
 # SANDBOX
 # Tools to use
 
-# uploaded_photo = col3.file_uploarder("Upload a photo.")
+# uploaded_photo = col3.file_uploader("Upload a photo.")
 # camera_photo = col3.camera_input("Take a photo!")
 # col3.success("Photo uploaded sucessfully!")
 # col3.progress(0)
-for perc_complete in range(100):
-    time.sleep(0.5)
-    progress_bar.progress(perc_complyee+1)
+# for perc_complete in range(100):
+#     time.sleep(0.5)
+#     progress_bar.progress(perc_complyee+1)
 
 # Use this to show how close someones score was: 
 
