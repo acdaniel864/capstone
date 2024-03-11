@@ -2,16 +2,17 @@
 **Price Predictive Modelling of Consumer Wines - an Application for Wine Comparison**<br>
 Capstone Project by Aaran Daniel<br>
 
-## Intro:<br>
-This project puts a fresh twist on a topic that is the interest of many a thirsty Data Scientist, wine. Over 50,000 wines are analysed in a project designed to shed light on what dictates the prices of consumer wine and help drinkers identify some delicious bargains. Combining datasets from two different websites, three seperate scrapes, it is hoped that deficiencies in any single datasource are mitigated, allowing for the creation of a price predictive model more robust to unseen data.<br> 
+## Executive Summary:<br>
+This project puts a fresh twist on a topic that is the interest of many a thirsty Data Scientist, wine. Over 50,000 wines are analysed in a project designed to shed light on what dictates the prices of consumer wine and help drinkers identify some delicious bargains. Combining datasets from two different websites, three seperate scrapes, it is hoped that deficiencies in any single datasource are mitigated, allowing for the creation of a price predictive model more robust to unseen data.<br> Mention validaiton EHRE.
 
 When identifying undervalued wines this project delves deeper than a basic comparison of rating and price. <br> 
 
 The end result will be a high-acccuracy price predictive model and an application designed for users to input wines and receive similar wines, vintage comparisons and some measure of value-for-money. Helping the user decide if the wine they are interested in is overvalued, undervalued or just-right. Some revealing price predictive features and interesting insights sprinkled in along the way.<br> 
 
+What risks/limitations/assumptions affect these findings.<br> Different prices in diff countries, old prices, old data, i didnt scrape it myself. Issues with region categorisation, is it done by appelation or region what defines a region. 
+
 ## Problem Statement:<br>
-- Too many wines out on the market how can a user know if they are getting good value for money? How the wine in their hand compares to previous vintages or wines from the same region.<br>
-- We look to understand what features are most predictive of wine prices and in doing so identify oppotiunities to purchase great wines at bargain prices.<br>
+Too many wines out on the market how can a user know if they are getting good value for money? How the wine in their hand compares to previous vintages or wines from the same region. This project looks to understand what features are most predictive of wine prices and in doing so identify oppotiunities to purchase great wines at bargain prices.<br>
 
 ## Primary Aim:<br>
 Using historical price data of wines develop a predictive model for prices and help consumers identify bargain wines.<br>
@@ -33,14 +34,14 @@ Using historical price data of wines develop a predictive model for prices and h
 ## Cleaned and Combined Dataset Data Dictionary:<br>
 | Column Name | Data Type | File | Description |
 |---|---|---|---|
-| name | object | cleaned_combined.csv | The name of the wine, often formulated <winery><grape><vintage> |
+| name | object | cleaned_combined.csv | The name of the wine, often formulated <name><winery><grape><vintage> or just <winery><grape><vintage> |
 | country | object | cleaned_combined.csv | Origin country of wine, USA as 'United States', UK countries seperate e.g. 'England' |
 | region | object | cleaned_combined.csv | Region in which the wine was produced, for the U.S. this is states |
 | vintage | object | cleaned_combined.csv | Year the grapes were picked otherwise known as vintage |
 | producer | object | cleaned_combined.csv | A two word code for producer names | 
 | rating | | cleaned_combined.csv |
 | rating_qty | | cleaned_combined.csv |
-| price | float |cleaned_combined.csv | Price in GBP for 750ml single bottle of wine |
+| price | float |cleaned_combined.csv | Price in USD for 750ml single bottle of wine |
 | grape_variety | object | cleaned_combined.csv | 
 | wine_variety | object | cleaned_combined.csv | Categorical variable representing wine type (red, white, sparkling, rose, unknown) |
 | abv | float | cleaned_combined.csv | 
@@ -67,25 +68,9 @@ Price: price of bottle in EUR €<br>
 **Scrapped:** 01/02/2022<br>
 Price: price of bottle in EUR €
 
-**[Validation Dataset - Unknown Source Wines Without Review](https://www.kaggle.com/datasets/elvinrustam/wine-dataset)**
-**Date uploaded:** 01/01/2024<br>
-Title: The name or title of the wine.<br>
-Description: A brief textual description providing additional details about the wine.<br>
-Price: The cost of the wine in GBP.<br>
-Capacity: The volume or size of the wine bottle.<br>
-Grape: The primary grape variety used in making the wine.<br>
-Secondary Grape Varieties: Additional grape varieties used in the wine blend.<br>
-Closure: The type of closure used for the bottle.<br>
-Country: The country where the wine is produced.<br>
-Unit:<br>
-Characteristics: The "Characteristics" feature encapsulates the unique and discernible flavors and aromas present in a particular wine.<br>
-Per bottle / case / each: The quantity of wine included per unit (bottle, case, or each) sold.<br>
-Type: The general category of the wine.<br>
-ABV: The percentage of alcohol content in the wine.<br>
-Region: The geographic region where the grapes used to make the wine are grown.<br>
-Style: This feature describes the overall sensory experience and characteristics of the wine.<br>
-Vintage: The year the grapes used to make the wine were harvested.<br>
-Appellation: A legally defined and protected geographical indication used to identify where the grapes for a wine were grown.<br>
+**[Vivino 3 dataset][https://www.kaggle.com/datasets/nikitatkachenko/vivinoredwine/data]**
+**Date uploaded:** 10/03/2024<br>
+Price: The cost of the wine in USD.<br>
 
 ### 2. Data Preparation
 - Clean all individual data files, assuring columns between all files align.<br>
@@ -174,3 +159,6 @@ Purpose: Allow wine consumers to better understand their choices of wine, compar
 2. More methods to extract or find grape varietry for viv_1.
 3. Do exact same eda and modelling for higher price wines. What is the difference? It is generally said minimum for IG wines is $100. ("run an experiment to see how the model fairs with them included for train and then with them excluded but predicted on...Even if you did that, do you have a way of determining if a wine falls into the super expensive category before you pass it into the model?")
 4. Predict ratings using price and other features. Try predicting ratings without price using RNNs. 
+5. Build a classification model that classifies wines as over/underpriced? 
+6. REMOVE ALL MENTIONS OF £
+

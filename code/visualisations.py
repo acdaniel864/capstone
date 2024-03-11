@@ -26,11 +26,12 @@ def compare_histograms(imputed_column, original_column, x_label, y_label = 'Freq
     xmin = min(original_column) - 0.02 * rnge
     xmax = max(original_column) + 0.02 * rnge
     #ymax = 100
-
-    ax0.set_xlim(xmin, xmax)
-
-    ax1.set_xlim(xmin, xmax)
-
+    try:
+        ax0.set_xlim(xmin, xmax)
+        ax1.set_xlim(xmin, xmax)
+    except: 
+        ax0.set_xlim(0, 20)
+        ax1.set_xlim(0, 20)
 
     # Set top labels.
     ax0.set_title('Real Histogram', position = (0,1), ha = 'left', fontsize = 25)
