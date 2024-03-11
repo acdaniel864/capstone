@@ -5,6 +5,7 @@ import numpy as np
 import gzip, pickle, pickletools
 import random 
 import time
+import visualisations as vis
 
 # BASIC START UP STUFF 
 if "player_answer" not in st.session_state:
@@ -13,6 +14,7 @@ if "player_answer" not in st.session_state:
 casi_width = 170
 
 # Import dataset and model 
+df = pd.read_csv('../data/clean_combined_wines.csv')
 df_backend = pd.read_csv('../data/app_backend.csv')
 df_frontend = pd.read_csv('../data/app_frontend.csv')
 filepath = '../models/casi_dt_v2.pkl'
@@ -20,8 +22,22 @@ with gzip.open(filepath, 'rb') as f:
     p = pickle.Unpickler(f)
     model = p.load()
 
-    
+# filepath_no_rating = '../models/casi_dt_no_rating.pkl'
+# with gzip.open(filepath, 'rb') as f:
+#     p_norating = pickle.Unpickler(f)
+#     model_no_rating = p_norating.load()
+
+# def switch_models():
+#     st.session_state
+
+
 # DEFINING FUNCTIONS
+def make_real_price(n):
+    rounded = round(n * 4) / 4
+    if rounded % 1 == 0:  # Checks if the decimal part is .00
+        rounded -= 0.01  # Adjusts .00 to .99
+    return rounded
+
 def next_question():
     st.session_state.answer = "not done"
     # Select a random row, calculate the prediction
@@ -30,7 +46,8 @@ def next_question():
     random_row_f = df_frontend.loc[random_index]
     X_with_price = random_row_b.to_frame().transpose()
     X = X_with_price.drop(['log_price'], axis = 1)
-    real_price = real_price = round(float(np.exp(X_with_price['log_price'].values[0])), 2)
+    price = round(float(np.exp(X_with_price['log_price'].values[0])), 2)
+    real_price = make_real_price(price)
     casi_answer =  float(round(np.exp(model.predict(X)[0]),2))
     # Update session_state
     st.session_state.casi_answer = casi_answer
@@ -53,31 +70,34 @@ def answer_function():
 # INITIAL (NEXT QUESTION)
 if st.session_state.answer == "not done":
     real_price, casi_answer, random_row_b, random_row_f = next_question()
-
     # DESIGN STUFF
     st.title("Can you beat Casi our in-house sommelier?")
-    st.markdown("**Guess the price of this wine**")
     st.table(random_row_f.to_frame().transpose().drop(columns = ['Log Price', 'Price (£)', 'name', 'ABV', 'Age']))
 
     col1, col2, col3 = st.columns([1,1,1]) 
 
     with col1:
-        st.markdown(f"{random_row_f[0]}")
-        st.markdown(f"Country: {random_row_f[2]}")
-        st.markdown(f"Region: {random_row_f[1]}")
-        st.markdown(f"Vintage: {random_row_f[3]}")
-        st.markdown(f"Variety: {random_row_f[5]}")
-        st.markdown(f"Grape: {random_row_f[5]}")
-        st.markdown(f"ABV: {random_row_f[9]}")
-        st.markdown(f"Producer: {random_row_f[4]}")
+        st.markdown(f"Name:  \n **{random_row_f[0]}**")
+
+        wine_width = 88
+        if random_row_f[5] == 'Red':
+            st.image('../images/red.png', width=wine_width, )
+        elif random_row_f[5] == 'White':
+            st.image('../images/white.png', width=wine_width)
+        elif random_row_f[5] == 'Rose':
+            st.image('../images/rose.png', width=wine_width)
+        elif random_row_f[5] == 'Sparkling':
+            st.image('../images/sparkling.png', width=wine_width)
+
 
     with col2:
         st.image('../images/casi_medium.png', width=casi_width)
 
     with col3:
         st.header('Answer here:')
-        player_answer = st.text_input("£", max_chars=7, key='player_answer', on_change=answer_function)
-        #final_answer = st.button('Final Answer', on_click=answer_function)
+        player_answer = st.text_input(label = "GBP", max_chars=7, key='player_answer', on_change=answer_function)
+        
+        # no_rating = st.button('Go easy on me', on_click=switch_models)
 
         # if st.button('Final Answer'):
         #     try:
@@ -86,7 +106,7 @@ if st.session_state.answer == "not done":
         #     except ValueError:
         #         st.error("Please enter a valid number for the price.")
         #         st.header('Play with your own wine?')
-        st.markdown(f"Upload or snap a photo of your bottle and see what casi thinks.")
+        # st.markdown(f"Upload or snap a photo of your bottle and see what casi thinks.")
         # uploaded_photo = col3.file_uploader("Upload a photo.")
         # camera_photo = col3.camera_input("Take a photo!")
 
@@ -101,20 +121,35 @@ if st.session_state["answer"] in ["answer correct", "answer incorrect"]:
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.markdown(f"# Price: £{real_price}")
+        st.markdown(f"## Price: £{real_price}")
+        st.markdown(f"## Rating: {random_row_f[8]}/5")
         # Add more details as needed
+        f"How does it compare to vintage averages in {random_row_f[2]}?"
+        st.dataframe(vis.compare_close_vintages_in_a_country(df, random_row_f[2], random_row_f[3]), hide_index=True)
 
     with col2:
         image_path = '../images/casi_sad.png' if st.session_state["answer"] == "answer correct" else '../images/casi_happy.png'
         st.image(image_path, width=casi_width)
 
     with col3:
-        header_text = 'Nice work!' if st.session_state["answer"] == "answer correct" else 'Better luck next time!'
+        header_text = 'Nice work you beat Casi!' if st.session_state["answer"] == "answer correct" else 'Sorry, Casi beat you!'
         st.header(header_text)
         st.markdown(f"The real price was £{real_price}.")
         st.markdown(f"Casi guessed £{casi_answer}.")
-        st.markdown(f"You guessed £{player_answer}.")
+        st.markdown(f"**You guessed £{player_answer}.**")
         # col3.metric(label="How close were you?", value=f"£{(casi_answer- real_price)}", delta=f"£{(player_answer-real_price)}")
         st.button('Play again', on_click=next_question)
 
-st.write(st.session_state)
+#st.write(st.session_state)
+
+
+# """
+#         st.markdown(f"{random_row_f[0]}")
+#         st.markdown(f"Country: {random_row_f[2]}")
+#         st.markdown(f"Region: {random_row_f[1]}")
+#         st.markdown(f"Vintage: {random_row_f[3]}")
+#         st.markdown(f"Variety: {random_row_f[5]}")
+#         st.markdown(f"Grape: {random_row_f[5]}")
+#         st.markdown(f"ABV: {random_row_f[9]}")
+#         st.markdown(f"Producer: {random_row_f[4]}")
+# """

@@ -56,20 +56,12 @@ Using historical price data of wines develop a predictive model for prices and h
 **Scrapped:** 02/11/23<br>
 **Features:**<br>
 Names: Name of the wine, grape variety, year<br>
-color_wine: The color type of the wine<br>
 Prices: Price of the wine USD<br>
-ML: Bottle capacity in milliliters<br>
-Rating: Verified consumer ratings out of 5<br>
-Ratingsnum: The number of ratings<br>
-Countrys: Country and region of production<br>
-ABV: Alcohol by volume (ABV) content<br>
-Rates: Simply lists the top wine experts who have reviewed the wine<br>
 
 **[Vivino 1 dataset](https://www.kaggle.com/datasets/budnyak/wine-rating-and-price)**:<br>
 **Scrapped:** 22/02/2020<br>
 Name: Name of wine and year<br>
 Price: price of bottle in EUR €<br>
-
 
 **[Vivino 2 dataset](https://www.kaggle.com/datasets/joshuakalobbowles/vivino-wine-data)**:<br>
 **Scrapped:** 01/02/2022<br>
@@ -97,14 +89,15 @@ Appellation: A legally defined and protected geographical indication used to ide
 
 ### 2. Data Preparation
 - Clean all individual data files, assuring columns between all files align.<br>
-- Include a column for source (vivino or wine.com)<br>
+- Include a column for source (vivino or wine.com) to keep track of data source.<br>
 - Sensibly handle missing values/outliers.<br>
 - Feature Engineering Ideas: <br>
-        - Climate effects (with a combination of year and region info)<br>
-        - Price-to-rating ratio<br>
+        - Climate effects (with a combination of year and region info). This was tried but did not imporve model predictiveness.<br>
+        - Price-to-rating ratio - for EDA.<br>
         - Critic Name and rating interaciton variable.<br>
         - Binary was reviewed by critic X.<br>
 - Idenfity grape variety for every observation.<br>
+- Idenfity and isolate producer (winery) for every observation.<br>
 - Create and include a measure for estimated drinking window.<br>
         - Certain grapes mature at different rates.<br>
         - Vintage Quality: Good vintages with optimal growing conditions can produce wines with greater aging potential.<br>
