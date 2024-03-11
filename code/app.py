@@ -32,11 +32,11 @@ with gzip.open(filepath, 'rb') as f:
 
 
 # DEFINING FUNCTIONS
-def make_real_price(n):
-    rounded = round(n * 4) / 4
-    if rounded % 1 == 0:  # Checks if the decimal part is .00
-        rounded -= 0.01  # Adjusts .00 to .99
-    return rounded
+# def make_real_price(n):
+#     rounded = round(n * 4) / 4
+#     if rounded % 1 == 0:  # Checks if the decimal part is .00
+#         rounded -= 0.01  # Adjusts .00 to .99
+#     return rounded
 
 def next_question():
     st.session_state.answer = "not done"
@@ -46,8 +46,7 @@ def next_question():
     random_row_f = df_frontend.loc[random_index]
     X_with_price = random_row_b.to_frame().transpose()
     X = X_with_price.drop(['log_price'], axis = 1)
-    price = round(float(np.exp(X_with_price['log_price'].values[0])), 2)
-    real_price = make_real_price(price)
+    real_price = round(float(np.exp(X_with_price['log_price'].values[0])), 2)
     casi_answer =  float(round(np.exp(model.predict(X)[0]),2))
     # Update session_state
     st.session_state.casi_answer = casi_answer
