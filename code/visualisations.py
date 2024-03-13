@@ -1,9 +1,10 @@
 
-# code taken from Matt Brems 
+
 def compare_histograms(imputed_column, original_column, x_label, y_label = 'Frequency', bins = 30):
     import matplotlib.pyplot as plt
     import numpy as np
     import statistics
+    # Code shamelessly adapted from code by Matt Brems 
     """
     Compares two histograms: one for the original data column and one for the imputed data column.
     This function plots two histograms vertically to visually compare the distribution of the original
@@ -64,6 +65,20 @@ def compare_histograms(imputed_column, original_column, x_label, y_label = 'Freq
 def compare_close_vintages_in_a_country(df, country, vintage, show_country = False):
     import matplotlib.pyplot as plt
     import numpy as np
+    """
+    Compares specified vintage with its closest vintages within a country based on median ratings
+    and prices. It selects up to six closest vintages for comparison if the country has at least
+    three vintages. The function rounds ratings and prices to two decimal places.
+
+    Parameters:
+    - df (DataFrame): Dataset with wine details.
+    - country (str): Country for vintage comparison.
+    - vintage (int or str): Target vintage year.
+    - show_country (bool, optional): Adds country name to output if True. Defaults to False.
+
+    Returns:
+    - DataFrame: Closest vintages comparison or message for insufficient data.
+    """
 
     country_df = df[df['country'] == country]
     
@@ -99,7 +114,24 @@ def compare_close_vintages_in_a_country(df, country, vintage, show_country = Fal
 def plot_country_vintage_comparison(df, vintage, location = None, plot_region = False, rateymin = 2.5, pricexmax = 100):
     import matplotlib.pyplot as plt
     import numpy as np
-    # used chat gpt to help with this graph because it got pretty complicado
+    # Used chat gpt to help with this graph because it got pretty complicado (also used shamelessly).
+    """
+    Plots comparison of average ratings and prices for vintages from a specified country or region.
+    Highlights the specified vintage with a unique marker. Allows customization of the y-axis limits
+    for rating and the maximum price displayed on the x-axis.
+
+    Parameters:
+    - df (DataFrame): The dataset containing wine details.
+    - vintage (int): The year of the vintage to highlight.
+    - location (str, optional): The country or region for comparison. Defaults to entire dataset if None.
+    - plot_region (bool, optional): If True, filters by region instead of country. Default is False.
+    - rateymin (float, optional): Minimum y-axis value for ratings. Default is 2.5.
+    - pricexmax (float, optional): Maximum x-axis value for price. Default is 100.
+
+    Creates a dual-axis plot showing median ratings and prices for vintages, with special emphasis on
+    the specified vintage.
+    """
+
     if location == None:
         location_data = df
 
@@ -134,10 +166,7 @@ def plot_country_vintage_comparison(df, vintage, location = None, plot_region = 
     ax2.bar(avg_metrics['vintage'], avg_metrics['price'], color=colour, label='Average Price', alpha=0.6)
     ax2.tick_params(axis='y', labelcolor=colour)
 
-    # Adjust x-axis to show marker every 2 years
-
     ax1.set_xticks(np.arange(2004, 2020 + 1, 2))
-    
     
     # Title
     ax1.set_title(f'Comparison of Avg. Rating & Price for Wines in {location} by Vintage')
@@ -150,3 +179,34 @@ def plot_country_vintage_comparison(df, vintage, location = None, plot_region = 
                                           markerfacecolor='darkblue', markeredgewidth=1.5, markeredgecolor='black')
     
     ax2.legend(handles=[rating_legend, price_legend, specific_vintage_legend], loc='upper left')
+
+
+def plot_producer_price_per_star(df, xlimmin = 2010, xlimmax = 2020, ylim = 40):
+    import matplotlib.pyplot as plt
+    import numpy as np
+    """
+    Generates plots for "Price Per Star" metrics over time by producer. Only producers with more than
+    5 entries are plotted. It displays average rating and price for each producer and plots both
+    "Price Per Star" and "RVint Price Per Star" metrics within specified x and y-axis limits.
+
+    Parameters:
+    - df: Dataset with wine producer details.
+    - xlimmin, xlimmax: X-axis limits for vintage year (default 2010 to 2020).
+    - ylim: Y-axis limit for price per star metric (default 40).
+    """
+    print("Avg rating \n", df.groupby('producer')['rating'].mean())
+    print("Avg price \n",df.groupby('producer')['price'].mean())
+    for producer in df['producer'].unique():
+        producer_df = df[df['producer'] == producer].sort_values('vintage')
+        if producer_df.shape[0] > 5:
+            plt.figure(figsize=(6, 4))
+            plt.plot('vintage', 'price_per_star', data=producer_df, label='Price Per Star', 
+                    marker='o', color = '#9437FF') 
+            plt.plot('vintage', 'rvint_price_per_star', data=producer_df, label='RVint Price Per Star', 
+                    linestyle='--', marker='x', color = '#FFBF00')
+            plt.xlabel('Vintage')
+            plt.ylabel('Price Per Star Metrics')
+            plt.ylim(0, ylim)
+            plt.xlim(xlimmin, xlimmax)
+            plt.title(f'{producer}')
+            plt.legend();

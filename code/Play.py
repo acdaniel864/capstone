@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import gzip, pickle, pickletools
 import random 
-import time
 import visualisations as vis
 import shap
 import matplotlib.pyplot as plt
@@ -33,17 +32,7 @@ with gzip.open(filepath, 'rb') as f:
     p = pickle.Unpickler(f)
     model = p.load()
 
-# filepath_no_rating = '../models/casi_dt_no_rating.pkl'
-# with gzip.open(filepath, 'rb') as f:
-#     p_norating = pickle.Unpickler(f)
-#     model_no_rating = p_norating.load()
-
-# def switch_models():
-#     st.session_state
-
-
 # DEFINING FUNCTIONS
-
 def next_question():
     st.session_state.answer = "not done"
     # Select a random row, calculate the prediction
@@ -103,15 +92,6 @@ if st.session_state.answer == "not done":
         st.header('Answer here:')
         player_answer = st.text_input(label = "USD", max_chars=7, key='player_answer', on_change=answer_function)
         
-        # no_rating = st.button('Go easy on me', on_click=switch_models)
-
-        # st.markdown(f"Upload or snap a photo of your bottle and see what casi thinks.")
-        # uploaded_photo = col3.file_uploader("Upload a photo.")
-        # camera_photo = col3.camera_input("Take a photo!")
-
-    # player_answer_slider = st.select_slider("How would you price this wine?", options = [f'${10}', f'${20}', f'${30}'])
-
-
 # REVIEW ANSWER 
 if st.session_state["answer"] in ["answer correct", "answer incorrect"]:
     st.title("Can you beat Casi our in-house sommelier?")
@@ -123,7 +103,6 @@ if st.session_state["answer"] in ["answer correct", "answer incorrect"]:
     with col1:
         st.markdown(f"## Price: ${real_price}")
         st.markdown(f"## Rating: {random_row_f[8]}/5")
-        # Add more details as needed
         f"How does it compare to vintage averages in {random_row_f[2]}?"
         st.dataframe(vis.compare_close_vintages_in_a_country(df, random_row_f[2], random_row_f[3]), hide_index=True)
 
@@ -143,15 +122,8 @@ if st.session_state["answer"] in ["answer correct", "answer incorrect"]:
         global_importances = pd.Series(index=X.columns, data=featureimp)
         
         st.bar_chart(global_importances)
-        # global_importances.sort_values(ascending=True, inplace=True)
-
-        # global_importances.plot.barh(color='mediumpurple')
-        # plt.xlabel("Importance")
-        # plt.ylabel("Feature")
-        # plt.title("Global Feature Importance");
-
-        # col3.metric(label="How close were you?", value=f"${(casi_answer- real_price)}", delta=f"${(player_answer-real_price)}")
         st.button('Play again', on_click=next_question)
+
 
 #st.write(st.session_state)
 

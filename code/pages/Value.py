@@ -8,17 +8,13 @@ import json
 
 st.set_page_config(page_title="Valuations", page_icon="📈")
 
-
 # Load the model
 filepath = '../models/casi_rf_production.pkl'
 with gzip.open(filepath, 'rb') as f:
     p = pickle.Unpickler(f)
     model_rf = p.load()
-
-# Preload category names and their mappings
-# This part needs to be filled based on your dataset
     
-# To load the mapping in a new session
+# To load the mapping of categoricals 
 with open('../mapping/label_mapping.json', 'r') as file:
     loaded_mapping = json.load(file)
 category_mappings = loaded_mapping
@@ -40,7 +36,7 @@ def user_input_features():
     log_rating_qty = np.log(rating_qty)
     rating_log_rating_qty = rating * log_rating_qty
 
-    # Prepare the input data frame (ensure the order matches your model's expected input)
+    # Prepare the input data frame
     features = {
         'region': category_mappings['Region'][region],
         'country':  category_mappings['Country'][country],
@@ -57,13 +53,12 @@ def user_input_features():
 
 col1, col2 = st.columns(2)
 with col1:
-    # Display the user input features
     user_inputs = user_input_features()
 
     explainer = shap.TreeExplainer(model_rf)
     shap_values = explainer.shap_values(user_inputs)
 
-    # Plot SHAP values (example, adjust as necessary)
+    # Plot SHAP
     plt.figure()
     shap.summary_plot(shap_values, user_inputs, plot_type="bar")
     st.pyplot(plt)
@@ -75,7 +70,7 @@ with col2:
         # Prediction
     prediction = model_rf.predict(user_inputs)
 
-    # Display predicted price 
+    # Display pred price 
     predicted_price = np.exp(prediction) 
     st.markdown(f"### Hrmm I'd price that")
     st.markdown(f'## $ {predicted_price[0]:.2f}')

@@ -45,47 +45,6 @@ def get_wine_variety(x):
     except:
         return 'error parsing' 
 
-def remove_varietal(x, varietals):
-    '''
-    Removes varietal name it finds + year (4 digits) and returns cleaned and capitalised producer name.
-    Returns 'review' if no varietal is found.
-    '''
-    original_x = x  # Store original input for comparison
-    x = uniform_strings(x).strip().lower()
-    varietals_to_extract = [varietal for varietal in varietals if varietal in x]
-    #print(f"All initial varietals: {varietals_to_extract}") 
-    count = 0
-    for i in range(0, len(varietals_to_extract)):
-        for varietal in varietals_to_extract:
-            # if year still in the string
-                    # if <grape><string><year>
-            if re.search(rf'{varietal}\s\w*\s\d{{4}}', x)!= None:
-                #print(f"X before resub {count} is: {x}") 
-                x = re.sub(rf'{varietal}\s\w*\s\d{{4}}\w*','', x)
-                count += 1
-                #print(f"String after {count} re subs is: {x}")
-
-            elif re.search(rf'\d{{4}}', x) != None:
-                # replace varietal names and years
-                #print(f"X before resub {count} is: {x}") 
-                x = re.sub(rf'{varietal}\s\d{{4}}\w*', '', x)
-                count += 1
-                #print(f"String after {count} re subs is: {x}")
-            
-            else: # replace varietal name only 
-                #print(f"X before resub {count} is: {x}") 
-                x = re.sub(rf'{varietal}', '', x)
-                count += 1
-                #print(f"String after {count} re subs is: {x}")
-        
-    if x == uniform_strings(original_x).strip().lower() or len(varietals_to_extract) == 0:
-        # if no changes were made to x
-        return 'review' 
-    else:
-        # return cleaned and capitalised producer name
-        return ' '.join(word.title() for word in x.split()).strip()
-
-
 def get_region(country):
     # Extract region name from country column.
     from_index = country.lower().find('from')
@@ -106,8 +65,9 @@ def get_country(country):
     else:
         return country.split(", ")[-1]
     
-# Isolate grape varieties from countrys column 
+
 def get_grape_1(x):
+    # Isolate grape varieties from countrys column 
     from_index = x.lower().find(' from')
     return x[:from_index]
 
@@ -130,30 +90,22 @@ def remove_varietal(x, varietals):
     original_x = x  # Store original input for comparison
     x = cf.uniform_strings(x).strip().lower()
     varietals_to_extract = [varietal for varietal in varietals if varietal in x]
-    #print(f"All initial varietals: {varietals_to_extract}") 
     count = 0
     for i in range(0, len(varietals_to_extract)):
         for varietal in varietals_to_extract:
             # if year still in the string
-                    # if <grape><string><year>
             if re.search(rf'{varietal}\s\w*\s\d{{4}}', x)!= None:
-                #print(f"X before resub {count} is: {x}") 
                 x = re.sub(rf'{varietal}\s\w*\s\d{{4}}\w*','', x)
                 count += 1
-                #print(f"String after {count} re subs is: {x}")
 
             elif re.search(rf'\d{{4}}', x) != None:
                 # replace varietal names and years
-                #print(f"X before resub {count} is: {x}") 
                 x = re.sub(rf'{varietal}\s\d{{4}}\w*', '', x)
                 count += 1
-                #print(f"String after {count} re subs is: {x}")
             
             else: # replace varietal name only 
-                #print(f"X before resub {count} is: {x}") 
                 x = re.sub(rf'{varietal}', '', x)
                 count += 1
-                #print(f"String after {count} re subs is: {x}")
         
     if x == cf.uniform_strings(original_x).strip().lower() or len(varietals_to_extract) == 0:
         # if no changes were made to x
@@ -205,8 +157,6 @@ def extract_varietal(input_str, varietal_list):
 def get_grape_2(x):
     # Isolate grape varieties from countrys column using year and '- '
     x_year_removed = re.sub(rf'(19|20)[0-9][0-9]', '', x)
-    #hyphen_index = x_year_removed.find('-')
-    #output = x_year_removed[hyphen_index+1:].strip()
     output = x_year_removed
     if x == output: 
         return 'unknown'
@@ -215,6 +165,9 @@ def get_grape_2(x):
 
 
 # Lists
+    
+
+
 us_states = (
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
     'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
@@ -515,69 +468,3 @@ custom_producer_list = ['Veuve Clicquot', 'Verite', 'Altar Uco Edad Media',
                         'Domaine De La Rouge'
 ]
 
-
-
-# DUMP !!!
-# # STEP 3 - Make Custom Producer List cycling through names
-
-# def match_producer(row, all_names):
-#     # remove from wine names
-#     no_year_name = re.sub(r'\b\d{4}\b', '', row).strip()
-    
-#     # split name into words 
-#     words = no_year_name.split()
-    
-#     # Define a helper function to check for matches
-#     def check_match(n):
-#         prefix = ' '.join(words[:n])
-#         return any(name.startswith(prefix) and name != no_year_name for name in all_names)
-    
-#     # Cycle through the conditions
-#     if check_match(1):
-#         if check_match(2):
-#             if check_match(3):
-#                 if check_match(4):
-#                     return ' '.join(words[:4])  # if four-word match is found return the first four words 
-#                 else:
-#                     return ' '.join(words[:3])  # else return the first three words
-#             else:
-#                 return ' '.join(words[:2])  # if three-word match not found return the first two words
-#         else:
-#             return''.join(words[:1])  # if two-word match not found return the first word
-#     else:
-#         return 'review'  # if not even 2 word mathc found return 'review' if no brand name found
-
-
-# # all_names is a list of all wine names without years for efficiency in lookups
-# all_names = df_wine_com['name'].apply(lambda x: re.sub(r'\b\d{4}\b', '', x).strip()).tolist()
-
-# customer_producer_list = df_wine_com['name'].apply(lambda x: match_producer(x, all_names))
-
-
-# def remove_grape_1(x):
-#     x = str(x)
-#     for item in grape_list_long['Variety']:
-#         if str(item).lower() in x.lower():
-#             output = x.split(item)[0].strip()
-#             if output != '':
-#                 return output
-#     else:
-#         return 'review'
-
-
-# def verify_grape(row):
-#    if row['name'].find(f"{row['grape_variety']}")!= -1:
-#        output = row['name'].split(f"{row['grape_variety']}")[0].strip()
-#        return output
-#    else: 
-#       return row['name']
-    
-# df_wine_com['producer_varietal_removed_verify'] = df_wine_com.apply(verify_grape, axis = 1)
-
-
-#def extract_producer(row):
-#    if row['name'].find(f"{row['grape_variety']}")!= -1:
-#        output = row['name'].split(f"{row['grape_variety']}")[0].strip()
-#    else: 
-
-#    return output

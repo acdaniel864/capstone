@@ -106,9 +106,22 @@ Purpose: Educate wine consumers and allow them to better understand their choice
 1. An educational game where you attempt to beat Casi our price predicting sommelier;<br>
 2. A valuation feature where casi will value any wine for you based on the informaiton you input!<br>
 
-## Conclusions & Findings:
-
-
+## Findings and Conclusions:
+* Rating of wines (when the have been rated at least 20 times) are highly predictive of wine prices, with a correlation of 0.4 (0.66 with log_price).
+* Rating and age have a positive correlation (0.3), which is to be expected, as wines age they are known to increase in depth of flavour. 
+* Wine age and prices have a positive correlation (0.34), log price and age a correlation of 0.49. 
+* Spain and Portugal have great value wines, being on average some of the cheapest and some of the most highly rated. 
+* France is both the highest rated on average and the most expensive. 
+* Good value vintages in Spain: 2008, 2018, 2019 and 2020 based on cost to rating ratio. 
+* Good value vintages in France: 2018, 2012 and 2014.
+* 2012 in France for example has a higher rating than the three years after and equal to 2011 but it is on average $10 cheaper than both 2011 and 2013!
+* Good value producers identified in Spain: Bodega De Bardos, Montecillo, Castillo Clavijo and Vina Pomal.
+* Relatively good value producer the famed Bordeux region of France: Chateau Destieux. 
+* Having isolated wines in the top 15% of ratings and bottom 15% of prices we found 5 wines from Spain and France, 4 form the US and 3 from italy. 
+* Rating and age have a positive correlation, which is to be expected, as wines age they are known to increase in depth of flavour.
+* Most important features of wine prices: rating, vintage, region, producer, country.
+* Spain seem to be where the great value wine is to be found. 
+* France most expern
 
 ## Future Analysis Ideas - Further Investigation: 
         * Review Text Analysis: Apply natural language processing (NLP) to analyze review texts for mentions of price or value. Determine if reviews often justify ratings with price (e.g., "great for the price") versus focusing solely on taste or experience. Or how frequently 'price' is mentioned in wine ratings across different platforms. A higher frequency of price mentions in positive (or negative) ratings could indicate a price-contextual evaluation.
