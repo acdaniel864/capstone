@@ -1,18 +1,16 @@
 # README - What, Where and Wine 
-**Price Predictive Modelling of Consumer Wines - an Application for Wine Comparison**<br>
-Capstone Project by Aaran Daniel<br>
+**Price Predictive Modelling and Application for Consumer Wines**<br>
+Aaran Daniel<br>
 
 ## Executive Summary:<br>
-This project puts a fresh twist on a topic that is the interest of many a thirsty Data Scientist, wine. Over 50,000 wines are analysed in a project designed to shed light on what dictates the prices of consumer wine and help drinkers identify some delicious bargains. Combining datasets from two different websites, three seperate scrapes, it is hoped that deficiencies in any single datasource are mitigated, allowing for the creation of a price predictive model more robust to unseen data.<br> Mention validaiton EHRE.
+This project puts a fresh twist on a topic that is the interest of many a thirsty Data Scientist, wine. Over 50,000 wines are analysed in a analysis designed to shed light on what dictates the prices of consumer wine and help drinkers identify some delicious bargains. Combining datasets from two different websites, three seperate scrapes, it is hoped that the creation of a price predictive model more robust to unseen data is facilitated.<br> 
 
-When identifying undervalued wines this project delves deeper than a basic comparison of rating and price. <br> 
+When identifying undervalued wines this project delves deeper than a basic comparison of rating and price. The end result will be a high-acccuracy price predictive model and an application designed, our very own digital sommerlier Casi. Casi comes in two parts: 1. A game of guess the wine price; 2. A wine valiation tool, helping a user decide if the wine they are interested in is priced sensibly. Some revealing price predictive features and interesting insights are sprinkled in along the way.<br> 
 
-The end result will be a high-acccuracy price predictive model and an application designed for users to input wines and receive similar wines, vintage comparisons and some measure of value-for-money. Helping the user decide if the wine they are interested in is overvalued, undervalued or just-right. Some revealing price predictive features and interesting insights sprinkled in along the way.<br> 
-
-What risks/limitations/assumptions affect these findings.<br> Different prices in diff countries, old prices, old data, i didnt scrape it myself. Issues with region categorisation, is it done by appelation or region what defines a region. 
+A limitaiton of this project is that wine prices differ countries for many reasons such as taxes and transportation costs. The data also varies in age and therefore some prices might be slightly out dated. Lastly the valuation ability of our app is limited to the regions, producers and countries upon which the model was trained. <br> 
 
 ## Problem Statement:<br>
-Too many wines out on the market how can a user know if they are getting good value for money? How the wine in their hand compares to previous vintages or wines from the same region. This project looks to understand what features are most predictive of wine prices and in doing so identify oppotiunities to purchase great wines at bargain prices.<br>
+Too many wines out on the market how can a user know if they are getting good value for money? How the wine in their hand compares to previous vintages or wines from the same region. This project looks to understand what features are most predictive of wine prices and in doing so identify opportunities to purchase great wines at bargain prices.<br>
 
 ## Primary Aim:<br>
 Using historical price data of wines develop a predictive model for prices and help consumers identify bargain wines.<br>
@@ -20,16 +18,14 @@ Using historical price data of wines develop a predictive model for prices and h
 ## Secondary Aims:<br>
 - Investigate the relationship between price and rating. Do consumers take into account the price before rating a wine or are all ratings equal?<br>
 - Identify key price predictive features.<br>
-- How important is region, vintage, producer and rating to the price of a wine? 
-- Investigate if a renowned reviewer having reviewed a wine is predictive for prices.<br>
+- How important is region, vintage, producer and rating to the price of a wine? <br>
 - Find undervalued wines which match features of higher value wines but at a discount price tag.<br>
 - Identify region/vintages that are highly rated compared to others. <br>
-- Suggest up-and-coming wines or producers that appear to be gaining in reputation and/or price.<br>
-- **Build an application** which allows wine buyers to search a wines and returns recommended similar wines, previous vintage price/performance and an estimate of ideal drinking window.<br>
+- **Build an application** which allows wine buyers to have fun, learn about wines and value bottles.<br>
 
-## Metric for Success<br>
+## Metric for Success:<br>
 - A model that is able of predicting prices to within 5% of actual price.<br>
-- Functioning application that is able to take as input even wines not in the dataset.<br>
+- Functioning application MVP providing a base which can be built upon in future.<br>
 
 ## Cleaned and Combined Dataset Data Dictionary:<br>
 | Column Name | Data Type | File | Description |
@@ -52,113 +48,85 @@ Using historical price data of wines develop a predictive model for prices and h
 
 ## Process
 
-### 1. Data Collection
-- **[Wine.com dataset](https://www.kaggle.com/datasets/salohiddindev/wine-dataset-scraping-from-wine-com):**
-**Scrapped:** 02/11/23<br>
-**Features:**<br>
-Names: Name of the wine, grape variety, year<br>
-Prices: Price of the wine USD<br>
+### 1. Data Collection<br>
+- **[Wine.com dataset](https://www.kaggle.com/datasets/salohiddindev/wine-dataset-scraping-from-wine-com):**<br>
+**Date uploaded:**  02/11/23<br>
 
 **[Vivino 1 dataset](https://www.kaggle.com/datasets/budnyak/wine-rating-and-price)**:<br>
-**Scrapped:** 22/02/2020<br>
-Name: Name of wine and year<br>
-Price: price of bottle in EUR €<br>
+**Date uploaded:**  22/02/2020<br>
 
 **[Vivino 2 dataset](https://www.kaggle.com/datasets/joshuakalobbowles/vivino-wine-data)**:<br>
-**Scrapped:** 01/02/2022<br>
-Price: price of bottle in EUR €
+**Date uploaded:**  01/02/2022<br>
 
-**[Vivino 3 dataset][https://www.kaggle.com/datasets/nikitatkachenko/vivinoredwine/data]**
+**[Vivino 3 dataset](https://www.kaggle.com/datasets/nikitatkachenko/vivinoredwine/data)**<br>
 **Date uploaded:** 10/03/2024<br>
-Price: The cost of the wine in USD.<br>
 
 ### 2. Data Preparation
 - Clean all individual data files, assuring columns between all files align.<br>
 - Include a column for source (vivino or wine.com) to keep track of data source.<br>
 - Sensibly handle missing values/outliers.<br>
 - Feature Engineering Ideas: <br>
-        - Climate effects (with a combination of year and region info). This was tried but did not imporve model predictiveness.<br>
+        - Climate effects (with a combination of year and region info), was tried but did not improve model predictiveness.<br>
         - Price-to-rating ratio - for EDA.<br>
-        - Critic Name and rating interaciton variable.<br>
         - Binary was reviewed by critic X.<br>
+        - Log transformation and polynomials.<br>
 - Idenfity grape variety for every observation.<br>
+- Idenfity wine variety for every observation and only include red, white, rose and sparkling (non-fortified) wines.<br>
 - Idenfity and isolate producer (winery) for every observation.<br>
-- Create and include a measure for estimated drinking window.<br>
-        - Certain grapes mature at different rates.<br>
-        - Vintage Quality: Good vintages with optimal growing conditions can produce wines with greater aging potential.<br>
-- Combine data sources ensuring that all duplicate values found, compared and datasets are combines without duplication. <br>
+- Combine data sources ensuring that all duplicate values found, compared and datasets are combines without duplication.<br>
 
 ### 3. EDA - Aggregate Level
 - Explore correlations between prices and features (vintage, region, producer, grape variety, ratings).<br>
 - Investigate specifically correlation between wine prices and their ratings.<br>
-- Plot scatter plot of wine ratings and prices to identify high rating low price (by region or vintage perhaps). <br>
-- Analyse score distributions and differences between wine.com and vivino distributions. <br>
-- Identify wines producers which have averaged high critic scores over 3-4 vintages in a row. Could these be producers of interest.<br>
-- Isolate limited production wines and analyse them seperately are there any in renowned regions that are below average prices for the region?<br> 
-- **Interesting renowned regions to look at in particular:** Napa Valley (US), Piedmont and Tuscany (Italy), Bordeaux, Burgundy, Champagne and Rhone (France), <br>
-- Investigate France regions in particular detail, it is said that "Burgundy is overpriced vs. Bordeaux which is underpriced".<br>
+- Plot scatter plot of wine ratings and prices to identify high rating low price (by region and vintage). <br>
+- Identify wines producers which have price/rating ratios more affordable than the region vintage average, 3-4 vintages in a row.<br>
 - **Idenfity up-and-coming / undervalued producers:** <br>
         - Look for wines with a positive differential between vintage/region average and wine price. Which might suggest the wine maker is performing above the vintage standard - therefore capable of producing a good wine in a bad vintage or an excellent wine in a good vintage.<br>
         - Identify producers with ratings on an upwards trajectory.<br>
-        - How else might future winners or up-and-coming producers be identified? <br>
 - **Identifying undervalued wines:**
-        - Rating Distribution Analysis by Price Segments: Segment wines by price brackets and analyze the distribution of their ratings.<br>
-- Isolate wines of above a certain price bracket and perform some seperate analysis of this group in particular.<br>
+        - Plot rating and price by country or region and isolate wines with abnormally low prices/high ratings. <br>
 
-### 4. Unsupervised Learning - Clustering: <br>
-- Use clustering methods to group wines based on region, year, rating and grape variety.<br>
-- Analyse clusters and split clusters into high/low quality based on ratings.<br>
-- Plot individual clusters with price included.<br>
-- **Interesting idea to explore - price distribution of producers, clustering and interaction variable with rating:**<br>
-        - Question: Is a 5-star rating of a wine from an 'high-end' producer worth more than a 5-star rating of a mass market producer? Are more expensive wines held to higher standards or are they just better overall therefore recieve generally higher ratings?<br>
-        - Make a table of producers with average prices. <br>
-        - Cluster the producers, in a high-end vs mass-market kind of split.<br>
-        - Make an interaction variable between rating and producer cluster. Pehaps this could capture, for example,  high rating * high-end producer = super expensive wine, in the regression modelling phase.<br>
+### 4. Regression Modelling
+- Label encooding was decided upon as opposed to binary encoding due to the quantity of categorical featyres. <br>
+- Target: log wine price used as more normally distributed and improved model predictiveness.<br>
+- Found initial baseline more and coefficients with simple Linear Regresssion.<br>
+- Scaled features for unbiased model training but it did not significantly affect model performance.<br>
+- Decision Tree models proved to be most accurate which is to be expcted with a high number of important categorical features and non-linear relationships (label encoded producer names for example).<br>
+- Random forests gave us the most accurate model in terms of R2 and RSME. <br>
+- All models were hyper parameter tuned. <br>
+- SHAP values, feature importance and recursive feature elimation done, finding region, country, vintage, producer and rating were the most predictive features. <br>
 
-### 5. Regression Modelling
-- One hot encode categorical variables. <br>
-- Target: wine price.<br>
-- Find initial coefficients with simple Linear Regresssion.<br>
-- Scale features for unbiased model training.<br>
-- Discover predictive features of price with white box regression modelling. Linear regression to analyse the linear relationship between features and price appreciation. Decision Trees to identify important features and potential non-linear relationships.<br>
-- Consider distribution of variables and making logarithmic transformations of target or features.<br>
-- Use black box modelling methods to maximise for model accuracy, random forests, XGBoost, perhaps even some highly unnecessary and costly neural network! ;) <br>
-- If a model with high accuracy is created, perhaps our application can include within it some measure of how over/underpriced when a bottle of wine is entered?<br>
+### 5. Model Validation
+- 10% of the original data set was kept completely seperate from the model creation phase to test production model(s). <br>
+- Best Decision Tree model R2 of 0.862, price RSME of $1.36. <br>
+- Best Random Forests model R2 of 0.924, price RSME of $1.26. <br>
 
-#### Other Modelling Ideas 
-- Test different models on different segments of the wine market. Do certain models suit certain market segments? Would it be wise to seperate the models in that sense? If region == X use model Y? Is this possible? <br>
-- Conduct regression using only ratings alone as a feature, compare the models' performance to the previous regression model. This could help address the question of whether price confounds ratings?<br>
-- [Study reference](https://digitalcommons.kennesaw.edu/cgi/viewcontent.cgi?referer=&httpsredir=1&article=1017&context=amj) "Our findings indicate that for low wine ratings, consumers rely more on the price-perceived quality heuristics. This implies... sellers may need to raise the price to increase perceptive quality. However for wine with high ratings, consumers rely more on the wine information. Hence wine labels or literature needs to have more information
-available to support the high ratings."<br>
+### 6. The Application
+Purpose: Educate wine consumers and allow them to better understand their choices of wine, compare their selection to back vintages both in quality and price and get some sense of the value of the wine they are researching. Application was split into two parts:
+1. An educational game where you attempt to beat Casi our price predicting sommelier;<br>
+2. A valuation feature where casi will value any wine for you based on the informaiton you input!<br>
 
-### 6. Evaluation and Iteration
-- Use metrics like root mean squared error (RMSE) or R-squared to assess prediction accuracy.<br>
-- Train our production model on the full avaliable training dataset. Create some predictions of price on wines in the validation_dataset.csv.<br> 
-- validation_dataset.csv is a recent scrape from Vivino of circa 1000 wines which will provide a test of the robustness of our model on unseen and more recent data.<br>
+## Conclusions & Findings:
 
-## Potential Challenges
-- Lack of important and useful attributes to predict wine prices. <br>
-- Data Quality and Completeness: The project relies on data from multiple sources, which may have inconsistencies, missing values, or errors.<br>
-- Estimating the drinking window of wines based on grape variety and vintage quality could prove difficult without just using second hand information from reasearch. <br>
-- Scalability of the Application: making an application which allows any wines to be inputted and remains up-to-date with the latest wine data could be challenging. <br>
 
-## The Application: 
-Purpose: Allow wine consumers to better understand their choices of wine, compare their selection to back vintages both in quality and price and get some sense of the value of the wine they are researching. <br>
-
-**Functionality:**
-1. Type in the name of a wine and see how back vintages have performed in ratings and prices. <br>
-2. Recommend similar wines to try. <br>
-3. Say if the wine they are researching is overpriced, underpriced or just right. <br>
 
 ## Future Analysis Ideas - Further Investigation: 
         * Review Text Analysis: Apply natural language processing (NLP) to analyze review texts for mentions of price or value. Determine if reviews often justify ratings with price (e.g., "great for the price") versus focusing solely on taste or experience. Or how frequently 'price' is mentioned in wine ratings across different platforms. A higher frequency of price mentions in positive (or negative) ratings could indicate a price-contextual evaluation.
         * Prices of wines for various reasons differ between countries, those scrapes done in EUR will be price differently to those done in GBP or USD. Taxes are different, import taxes are different and websites might deal with price conversions differently. 
+        * Investigate if a renowned reviewer having reviewed a wine is predictive for prices.
+        * Seperate out fine wines and create and include a measure for estimated drinking window. Certain grapes mature at different rates. Vintage Quality: Good vintages with optimal growing conditions can produce wines with greater aging potential.
+        * Test different models on different segments of the wine market. Do certain models suit certain market segments? Would it be wise to seperate the models in that sense? If region == X use model Y? Is this possible? 
+        Conduct regression using only ratings alone as a feature, compare the models' performance to the previous regression model. This could help address the question of whether price confounds ratings?
+        Study reference](https://digitalcommons.kennesaw.edu/cgi/viewcontent.cgi?referer=&httpsredir=1&article=1017&context=amj) "Our findings indicate that for low wine ratings, consumers rely more on the price-perceived quality heuristics. This implies... sellers may need to raise the price to increase perceptive quality. However for wine with high ratings, consumers rely more on the wine information. Hence wine labels or literature needs to have more information available to support the high ratings."<br>
+        * Calculate an estimating the drinking window for fine winesbased on grape variety and vintage quality. <br>
 
-## Things to revisit: 
-1. Group the producers more. 
-2. More methods to extract or find grape varietry for viv_1.
-3. Do exact same eda and modelling for higher price wines. What is the difference? It is generally said minimum for IG wines is $100. ("run an experiment to see how the model fairs with them included for train and then with them excluded but predicted on...Even if you did that, do you have a way of determining if a wine falls into the super expensive category before you pass it into the model?")
-4. Predict ratings using price and other features. Try predicting ratings without price using RNNs. 
-5. Build a classification model that classifies wines as over/underpriced? 
-6. REMOVE ALL MENTIONS OF £
+## Areas for Improvement:
+1. Group the producers more thoroughly.
+2. Review methods to extract or find grape varietry for vivino 1 dataset.
+3. Do exact same eda and modelling for higher price wines. What is the difference? It is generally said minimum for IG wines is $100.
+4. Predict ratings using price and other features. Try predicting ratings without price using RNNs perhaps. 
+5. Build a classification model that classifies wines as over/underpriced.
+6. Develop the application game to have difficulty levels and to be more aesthetically pleasing. 
+7. Further investigation into specific underpriced wines. 
+8. Make an application which allows any wines to be inputted - it proved difficult to find a free API for wine information. 
 

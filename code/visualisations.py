@@ -71,7 +71,7 @@ def compare_close_vintages_in_a_country(df, country, vintage, show_country = Fal
     vintage_counts = country_df.groupby('vintage').filter(lambda x: len(x) >= 3)
     
     # Calculate average rating and price by vintage.
-    avg_metrics_by_vintage = vintage_counts.groupby('vintage')[['rating', 'price']].mean().reset_index()
+    avg_metrics_by_vintage = vintage_counts.groupby('vintage')[['rating', 'price']].median().reset_index()
     
     avg_metrics_by_vintage['rating'] = avg_metrics_by_vintage['rating'].round(2)
     avg_metrics_by_vintage['price'] = avg_metrics_by_vintage['price'].round(2)
@@ -96,25 +96,30 @@ def compare_close_vintages_in_a_country(df, country, vintage, show_country = Fal
     else:
         print("We don't have enough data for vintage comparison on this occasion.")
 
-def plot_country_vintage_comparison(df, location, vintage, plot_region = False):
+def plot_country_vintage_comparison(df, vintage, location = None, plot_region = False, rateymin = 2.5, pricexmax = 100):
     import matplotlib.pyplot as plt
     import numpy as np
     # used chat gpt to help with this graph because it got pretty complicado
-    if plot_region == True: 
-        location_data = df[df['region'] == location]
+    if location == None:
+        location_data = df
 
     else:
-        location_data = df[df['country'] == location]
+        if plot_region == True: 
+            location_data = df[df['region'] == location]
+
+        else:
+            location_data = df[df['country'] == location]
+
     
-    avg_metrics = location_data.groupby('vintage')[['rating', 'price']].mean().reset_index()
+    avg_metrics = location_data.groupby('vintage')[['rating', 'price']].median().reset_index()
     
     fig, ax1 = plt.subplots(figsize=(10, 5))
 
-    colour1 = 'mediumpurple'
+    colour1 = '#FFBF00'
     ax1.set_xlabel('Vintage')
     ax1.set_ylabel('Rating', color=colour1)
-    ax1.set_xlim(1999.5,2021.5)
-    ax1.set_ylim(0,5)
+    ax1.set_xlim(2004.5,2021.5)
+    ax1.set_ylim(rateymin,5)
     ax1.scatter(avg_metrics['vintage'], avg_metrics['rating'], color=colour1, label='Average Rating')
     ax1.tick_params(axis='y', labelcolor=colour1)
     
@@ -123,24 +128,24 @@ def plot_country_vintage_comparison(df, location, vintage, plot_region = False):
     ax1.scatter(vintage, specific_vintage_rating, color='darkblue', s=100, label=f'Rating in {vintage}', edgecolors='black')
     
     ax2 = ax1.twinx()
-    colour = 'lightpink'
-    ax2.set_ylim(0,250)
+    colour = '#9437FF'
+    ax2.set_ylim(0,pricexmax)
     ax2.set_ylabel('Average Price', color=colour)
     ax2.bar(avg_metrics['vintage'], avg_metrics['price'], color=colour, label='Average Price', alpha=0.6)
     ax2.tick_params(axis='y', labelcolor=colour)
 
     # Adjust x-axis to show marker every 2 years
 
-    ax1.set_xticks(np.arange(2000, 2020 + 1, 2))  # +1 to include the last year if it's within the range
+    ax1.set_xticks(np.arange(2004, 2020 + 1, 2))
     
     
     # Title
     ax1.set_title(f'Comparison of Avg. Rating & Price for Wines in {location} by Vintage')
     
     # Create a legend
-    rating_legend = plt.Line2D([0], [0], marker='o', color='w', label='Average Rating', markerfacecolor= 'mediumpurple')
+    rating_legend = plt.Line2D([0], [0], marker='o', color='w', label='Average Rating', markerfacecolor= '#FFBF00')
     price_legend = plt.Line2D([0], [0], marker='s', color='w', label='Average Price',
-                              markerfacecolor='pink')
+                              markerfacecolor='#9437FF')
     specific_vintage_legend = plt.Line2D([0], [0], marker='o', color='w', label=f'Rating in {vintage}',
                                           markerfacecolor='darkblue', markeredgewidth=1.5, markeredgecolor='black')
     
