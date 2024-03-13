@@ -48,7 +48,7 @@ Using historical price data of wines develop a predictive model for prices and h
 ## Process
 
 ### 1. Data Collection<br>
-- **[Wine.com dataset](https://www.kaggle.com/datasets/salohiddindev/wine-dataset-scraping-from-wine-com):**<br>
+**[Wine.com dataset](https://www.kaggle.com/datasets/salohiddindev/wine-dataset-scraping-from-wine-com):**<br>
 **Date uploaded:**  02/11/23<br>
 
 **[Vivino 1 dataset](https://www.kaggle.com/datasets/budnyak/wine-rating-and-price)**:<br>
@@ -141,3 +141,34 @@ Purpose: Educate wine consumers and allow them to better understand their choice
 7. Further investigation into specific underpriced wines. 
 8. Make an application which allows any wines to be inputted - it proved difficult to find a free API for wine information. 
 
+
+### References:
+
+#### Research
+- [Financial Times - Wine investment insights](https://www.ft.com/content/6923fa7f-03be-4e32-a7bc-f4bd18d151e9)
+- [Decanter - Liv-Ex top price performers slow wine market](https://www.decanter.com/wine-news/liv-ex-top-price-performers-slow-wine-market-509324/)
+- [Liz Palmer - Liv-Ex 1000 shows that interest in wines from Burgundy, Champagne, the Rhône, Italy, and US has grown rapidly and unexpectedly](https://www.liz-palmer.com/liv-ex-1000-shows-that-interest-in-wines-from-burgundy-champagne-the-rhone-italy-and-us-has-grown-rapidly-and-unexpectedly/)
+- [Decanter - Liv-Ex 2023 top traded fine wines challenging market](https://www.decanter.com/wine-news/liv-ex-2023-top-traded-fine-wines-challenging-market-519686/)
+- [Spotify - Wine podcast episode](https://open.spotify.com/episode/3i4ULTEMPElmyYrNFZlGzM?si=f0cfcaa5de7b4c04)
+- [Visual Capitalist - Biggest wine producers by country](https://www.visualcapitalist.com/cp/biggest-wine-producers-by-country/)
+- [Dawsons Auctions - What's considered fine wine](https://www.dawsonsauctions.co.uk/news-item/whats-considered-fine-wine/#:~:text=Although%20fine%20wine%20is%20a,and%20holds%20a%20resale%20value)
+- [Delfino Fine Wines - The price of wine](https://www.delfinofinewines.com/blog/The-price-of-wine)
+- [XE - Currency tables](https://www.xe.com/currencytables/)
+- [Wine U Design - Alcohol content of wine from highest to lowest](https://wineudesign.com/alcohol-content-of-wine-from-highest-to-lowest/)
+
+#### Code
+- [Holoviz Discourse - Stacked histogram](https://discourse.holoviz.org/t/stacked-histogram/6205/2)
+- [Forecastegy - Feature importance in random forests](https://forecastegy.com/posts/feature-importance-in-random-forests/#:~:text=Permutation%20feature%20importance%20is%20another,out%2Dof%2Dsample%20dataset)
+- [YouTube - Data Science Tutorial](https://www.youtube.com/watch?v=_Um12_OlGgw)
+- [YouTube - More on Data Science](https://www.youtube.com/watch?v=UfuC8bZVc3A)
+- [YouTube - Data Visualization Techniques](https://www.youtube.com/watch?v=vIQQR_yq-8I)
+- [Stack Overflow - Model too large for GitHub](https://stackoverflow.com/questions/58122764/my-fitted-model-is-too-large-to-be-uploaded-to-github-despite-the-dataset-not-be)
+- [Towards Data Science - Handling large model pickle files](https://towardsdatascience.com/the-power-of-pickletools-handling-large-model-pickle-files-7f9037b9086b)
+- [Stack Overflow - GridSearchCV negative score](https://stackoverflow.com/questions/54462142/gridsearchcv-negative-score)
+- [Stack Overflow - Removing accents from strings in Python](https://stackoverflow.com/questions/517923/what-is-the-best-way-to-remove-accents-normalize-in-a-python-unicode-string)
+- [Cheat Sheet - Streamlit](https://cheat-sheet.streamlit.app/)
+- [YouTube - Streamlit Tutorial](https://www.youtube.com/watch?v=5l9COMQ3acc)
+- [Stack Overflow - Plotting frequency distributions](https://stackoverflow.com/questions/5923168/plotting-frequency-distributions-in-python)
+- [YouTube - Python Programming Tutorial](https://www.youtube.com/watch?v=JwSS70SZdyM&t=8906s)
+- [Stack Overflow - Streamlit autocomplete](https://stackoverflow.com/questions/72409860/streamlit-autocomplete-from-list-of-values)
+- [Streamlit Discuss - Creating a requirements.txt file](https://discuss.streamlit.io/t/create-a-requirements-txt-file/20272)

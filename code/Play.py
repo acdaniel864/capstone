@@ -5,8 +5,8 @@ import numpy as np
 import gzip, pickle, pickletools
 import random 
 import visualisations as vis
-import shap
 import matplotlib.pyplot as plt
+import shap
 
 st.set_page_config(
     page_title="Play",
@@ -118,11 +118,17 @@ if st.session_state["answer"] in ["answer correct", "answer incorrect"]:
         st.markdown(f"**You guessed ${player_answer}.**")
         X_with_price = random_row_b.to_frame().transpose()
         X = X_with_price.drop(columns = ['log_price'])
-        featureimp = model.feature_importances_
-        global_importances = pd.Series(index=X.columns, data=featureimp)
+        # featureimp = model.feature_importances_
+        # global_importances = pd.Series(index=X.columns, data=featureimp)
         
-        st.bar_chart(global_importances)
+        explainer = shap.TreeExplainer(model)
+        shap_values = explainer.shap_values(X)
+        plt.figure()
+        shap.summary_plot(shap_values, X, plot_type="bar")
+        st.pyplot(plt)
         st.button('Play again', on_click=next_question)
+        # st.bar_chart(global_importances)
+
 
 
 #st.write(st.session_state)
