@@ -157,7 +157,10 @@ def plot_country_vintage_comparison(df, vintage, location = None, plot_region = 
     
     # Change apperance of selected vintage
     specific_vintage_rating = avg_metrics[avg_metrics['vintage'] == vintage]['rating']
-    ax1.scatter(vintage, specific_vintage_rating, color='darkblue', s=100, label=f'Rating in {vintage}', edgecolors='black')
+    if not specific_vintage_rating.empty:
+        ax1.scatter(vintage, specific_vintage_rating, color='darkblue', s=100, label=f'Rating in {vintage}', edgecolors='black')
+    else:
+        print(f"No data available for vintage {vintage}")
     
     ax2 = ax1.twinx()
     colour = '#9437FF'
