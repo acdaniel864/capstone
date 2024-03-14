@@ -6,6 +6,7 @@ import gzip, pickle, pickletools
 import random 
 import matplotlib.pyplot as plt
 import shap
+from pathlib import Path
 
 st.set_page_config(
     page_title="Play",
@@ -22,13 +23,22 @@ if "player_answer" not in st.session_state:
 
 casi_width = 175
 
-# Import dataset and model 
-df = pd.read_csv('./clean_combined_wines_copy.csv')
-df_backend = pd.read_csv('./app_backend.csv')
-df_frontend = pd.read_csv('./app_frontend.csv')
-#filepath = '../models/casi_dt_production.pkl'
-filepath = '../models/casi_rf_production.pkl'
-with gzip.open(filepath, 'rb') as f:
+# Set the base directory to the parent of the current script's directory
+base_dir = Path(__file__).resolve().parent.parent
+
+# Define file paths using pathlib
+clean_combined_wines_path = base_dir / 'app' / 'clean_combined_wines_copy.csv'
+df_backend_path = base_dir / 'app' / 'app_backend.csv'
+df_frontend_path = base_dir / 'app' / 'app_frontend.csv'
+model_filepath = base_dir / 'models' / 'casi_rf_production.pkl'
+
+# Load datasets
+df = pd.read_csv(clean_combined_wines_path)
+df_backend = pd.read_csv(df_backend_path)
+df_frontend = pd.read_csv(df_frontend_path)
+
+# Load the model
+with gzip.open(model_filepath, 'rb') as f:
     p = pickle.Unpickler(f)
     model = p.load()
 

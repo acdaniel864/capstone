@@ -11,6 +11,7 @@ from sklearn.ensemble import BaggingRegressor, RandomForestRegressor, AdaBoostRe
 from sklearn.svm import SVR
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import mean_squared_error, r2_score
 
 
 def regression_model_selector(X_train, y_train, X_test, y_test, ss=False, quick=False):
@@ -79,3 +80,30 @@ def regression_model_selector(X_train, y_train, X_test, y_test, ss=False, quick=
         results['varience'] = results['train_score'] - results['test_score']
         return results
     
+
+def model_summary(model, X_train, X_test, y_train, y_test, log_target=False, cv=5, decplaces=3):
+    
+    model = model.fit(X_train, y_train)
+    y_train_pred = model.predict(X_train)
+    y_pred = model.predict(X_test)
+    if log_target == True:
+        print(f"Exponent Root Mean Squared Error (RMSE): {round(np.exp(np.sqrt(mean_squared_error(y_test, y_pred))),decplaces)}")
+
+    print(f"Root Mean Squared Error (RMSE): {round(np.sqrt(mean_squared_error(y_test, y_pred)),decplaces)}")
+    print(f"Train R-squared (R2): {round(r2_score(y_train, y_train_pred),3)}")
+    print(f"Test R-squared (R2): {round(r2_score(y_test, y_pred),3)}")
+    crossval = cross_val_score(model, X_train, y_train, cv = cv, scoring='r2')
+    if crossval.mean() < 0:
+        print(f"High varience noted in cross validation: {crossval}")
+        print(f"Cross validated r2: {round(crossval.mean(),decplaces)}")
+    else:
+        print(f"Cross validated r2: {round(crossval.mean(),decplaces)}")
+
+    # Extract coefficients
+    coefficients = model.coef_
+
+    # Create a DataFrame with feature names and coefficients
+    coeff_df = pd.DataFrame({'Feature': X_train.columns, 'Coefficient': coefficients})
+    sorted_coeff_df = coeff_df.sort_values(by='Coefficient', ascending=True)
+
+    return model, y_pred, sorted_coeff_df
