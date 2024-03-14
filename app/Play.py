@@ -181,7 +181,6 @@ if st.session_state["answer"] in ["answer correct", "answer incorrect"]:
         explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X)
         featurenames = [i.replace('_', ' ').title() for i in X]
-        plt.figure()
         shap.summary_plot(shap_values, feature_names=featurenames, max_display=7, plot_type="bar", color='mediumpurple')
         st.pyplot(plt)
         st.button('Play again', on_click=next_question)
