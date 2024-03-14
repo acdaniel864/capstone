@@ -5,17 +5,21 @@ import gzip, pickle, pickletools
 import shap
 import matplotlib.pyplot as plt
 import json
+from pathlib import Path
 
 st.set_page_config(page_title="Valuations", page_icon="📈")
 
+base_dir = Path(__file__).resolve().parent.parent.parent
+
 # Load the model
-filepath = '../models/casi_rf_production.pkl'
+filepath = base_dir / 'models' / 'casi_rf_production.pkl'
 with gzip.open(filepath, 'rb') as f:
     p = pickle.Unpickler(f)
     model_rf = p.load()
     
 # To load the mapping of categoricals 
-with open('../mapping/label_mapping.json', 'r') as file:
+json_filepath = base_dir / 'mapping' / 'label_mapping.json'
+with open(json_filepath, 'r') as file:
     loaded_mapping = json.load(file)
 category_mappings = loaded_mapping
 
@@ -61,8 +65,9 @@ with col1:
     shap_values = explainer.shap_values(user_inputs)
 
 with col2:
-    image_path = '../images/casi_medium.png'
-    st.image(image_path, width=140)
+    
+    image_path = base_dir / 'images' / 'casi_medium.png'
+    st.image(str(image_path), width=140)
 
         # Prediction
     prediction = model_rf.predict(user_inputs)
@@ -73,10 +78,11 @@ with col2:
     st.markdown(f'## $ {predicted_price[0]:.2f}')
 
 st.markdown(f"##### Here's why")
-# Plot SHAP
-plt.figure()
+
 shap.summary_plot(shap_values, feature_names=featurenames, max_display=6, plot_type="bar", color='mediumpurple')
-st.pyplot(plt)
+fig = plt.gcf()
+st.pyplot(fig)
+plt.clf()
 
 
 

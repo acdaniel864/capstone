@@ -81,7 +81,7 @@ def regression_model_selector(X_train, y_train, X_test, y_test, ss=False, quick=
         return results
     
 
-def model_summary(model, X_train, X_test, y_train, y_test, log_target=False, cv=5, decplaces=3):
+def model_summary(model, X_train, X_test, y_train, y_test, log_target=False, cv=5, decplaces=3, coef =False):
     
     model = model.fit(X_train, y_train)
     y_train_pred = model.predict(X_train)
@@ -99,11 +99,4 @@ def model_summary(model, X_train, X_test, y_train, y_test, log_target=False, cv=
     else:
         print(f"Cross validated r2: {round(crossval.mean(),decplaces)}")
 
-    # Extract coefficients
-    coefficients = model.coef_
-
-    # Create a DataFrame with feature names and coefficients
-    coeff_df = pd.DataFrame({'Feature': X_train.columns, 'Coefficient': coefficients})
-    sorted_coeff_df = coeff_df.sort_values(by='Coefficient', ascending=True)
-
-    return model, y_pred, sorted_coeff_df
+    return model, y_pred
