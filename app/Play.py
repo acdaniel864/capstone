@@ -23,10 +23,11 @@ if "player_answer" not in st.session_state:
 casi_width = 175
 
 # Import dataset and model 
-# df = pd.read_csv('./clean_combined_wines_copy.csv')
+df = pd.read_csv('./clean_combined_wines_copy.csv')
 df_backend = pd.read_csv('./app_backend.csv')
 df_frontend = pd.read_csv('./app_frontend.csv')
-filepath = '../models/casi_dt_production.pkl'
+#filepath = '../models/casi_dt_production.pkl'
+filepath = '../models/casi_rf_production.pkl'
 with gzip.open(filepath, 'rb') as f:
     p = pickle.Unpickler(f)
     model = p.load()
@@ -130,7 +131,6 @@ if st.session_state.answer == "not done":
         elif random_row_f[5] == 'Sparkling':
             st.image('../images/sparkling.png', width=wine_width)
 
-
     with col2:
         st.image('../images/casi_medium.png', width=casi_width)
 
@@ -159,9 +159,10 @@ if st.session_state["answer"] in ["answer correct", "answer incorrect"]:
     with col3:
         header_text = 'Nice work you beat Casi!' if st.session_state["answer"] == "answer correct" else 'Casi wins!'
         st.header(header_text)
-        st.markdown(f"The real price was ${real_price}.")
-        st.markdown(f"Casi guessed ${casi_answer}.")
-        st.markdown(f"**You guessed ${player_answer}.**")
+        st.markdown(f"The real price was ${real_price}")
+        st.markdown(f"Casi guessed ${casi_answer}")
+        st.markdown(f"**You guessed ${player_answer}**")
+        st.markdown(f"Why did Casi choose that price:")
         X_with_price = random_row_b.to_frame().transpose()
         X = X_with_price.drop(columns = ['log_price'])
         # featureimp = model.feature_importances_
@@ -169,16 +170,14 @@ if st.session_state["answer"] in ["answer correct", "answer incorrect"]:
         
         explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X)
+        featurenames = [i.replace('_', ' ').title() for i in X]
         plt.figure()
-        shap.summary_plot(shap_values, X, plot_type="bar")
+        shap.summary_plot(shap_values, feature_names=featurenames, max_display=7, plot_type="bar", color='mediumpurple')
         st.pyplot(plt)
         st.button('Play again', on_click=next_question)
         # st.bar_chart(global_importances)
 
-
-
 #st.write(st.session_state)
-
 
 # """
 #         st.markdown(f"{random_row_f[0]}")

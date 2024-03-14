@@ -51,31 +51,32 @@ def user_input_features():
     }
     return pd.DataFrame([features])
 
+st.title("Get CASI to value a wine for you")
+
 col1, col2 = st.columns(2)
 with col1:
     user_inputs = user_input_features()
-
+    featurenames = [i.replace('_', ' ').title() for i in user_inputs.columns]
     explainer = shap.TreeExplainer(model_rf)
     shap_values = explainer.shap_values(user_inputs)
 
-    # Plot SHAP
-    plt.figure()
-    shap.summary_plot(shap_values, user_inputs, plot_type="bar")
-    st.pyplot(plt)
-
 with col2:
     image_path = '../images/casi_medium.png'
-    st.image(image_path, width=150)
+    st.image(image_path, width=140)
 
         # Prediction
     prediction = model_rf.predict(user_inputs)
 
     # Display pred price 
     predicted_price = np.exp(prediction) 
-    st.markdown(f"### Hrmm I'd price that")
+    st.markdown(f"##### I'd price that")
     st.markdown(f'## $ {predicted_price[0]:.2f}')
 
-
+st.markdown(f"##### Here's why")
+# Plot SHAP
+plt.figure()
+shap.summary_plot(shap_values, feature_names=featurenames, max_display=6, plot_type="bar", color='mediumpurple')
+st.pyplot(plt)
 
 
 
