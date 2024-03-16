@@ -129,7 +129,7 @@ if st.session_state.answer == "not done":
     col1, col2, col3 = st.columns([1, 1, 1])  
 
     with col1:
-        st.markdown(f"### Name:  \n **{random_row_f[0]}**")
+        st.markdown(f"### Price this wine:  \n {random_row_f[0]}")
 
         wine_width = 60
         if random_row_f[5] == 'Red':

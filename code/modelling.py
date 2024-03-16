@@ -12,6 +12,7 @@ from sklearn.svm import SVR
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_squared_error, r2_score
+import matplotlib.pyplot as plt
 
 
 def regression_model_selector(X_train, y_train, X_test, y_test, ss=False, quick=False):
@@ -100,3 +101,13 @@ def model_summary(model, X_train, X_test, y_train, y_test, log_target=False, cv=
         print(f"Cross validated r2: {round(crossval.mean(),decplaces)}")
 
     return model, y_pred
+
+def plot_residuals(y, predicitons, figsize=(7, 5), colour = 'mediumpurple', line_colour='lightpink'): 
+    residuals = y - predicitons
+    plt.figure(figsize=figsize)
+    plt.scatter(y, residuals, color=colour)
+    plt.axhline(y=0, color=line_colour, linestyle='--', edgecolor='k')
+    plt.xlabel('Actual Values')
+    plt.ylabel('Residuals')
+    plt.title('Residuals and Actual Values');
+    return residuals

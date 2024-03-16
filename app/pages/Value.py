@@ -25,7 +25,7 @@ category_mappings = loaded_mapping
 
 def user_input_features():
     # Numerical inputs
-    rating = st.slider('Rating', 0.0, 5.0, 2.5) 
+    rating = st.slider('Rating (vivino rating recommended)', 0.0, 5.0, 3.8) 
     rating_qty = 150.0
 
     # Categorical inputs
@@ -68,21 +68,20 @@ with col2:
     
     image_path = base_dir / 'images' / 'casi_medium.png'
     st.image(str(image_path), width=140)
+    if st.button('Value My Wine'):
+        prediction = model_rf.predict(user_inputs)
 
-        # Prediction
-    prediction = model_rf.predict(user_inputs)
+        predicted_price = np.exp(prediction)
 
-    # Display pred price 
-    predicted_price = np.exp(prediction) 
-    st.markdown(f"##### I'd price that")
-    st.markdown(f'## $ {predicted_price[0]:.2f}')
+        st.markdown(f"##### I'd price that")
+        st.markdown(f'## $ {predicted_price[0]:.2f}')
 
-st.markdown(f"##### Here's why")
+        st.markdown(f"##### Here's why")
 
-shap.summary_plot(shap_values, feature_names=featurenames, max_display=6, plot_type="bar", color='mediumpurple')
-fig = plt.gcf()
-st.pyplot(fig)
-plt.clf()
+        shap.summary_plot(shap_values, feature_names=featurenames, max_display=6, plot_type="bar", color='mediumpurple')
+        fig = plt.gcf()
+        st.pyplot(fig)
+        plt.clf()
 
 
 
